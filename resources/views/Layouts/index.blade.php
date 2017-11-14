@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>ระบบจัดตารางงานssss</title>
+    <title>ระบบจัดตารางงาน</title>
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/metisMenu.min.css') }}" rel="stylesheet">
