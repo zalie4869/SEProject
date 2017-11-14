@@ -24,6 +24,7 @@ body {
         margin-left: 250px;
         padding: 30px 30px 0 30px;
         border-left: 1px solid #e7e7e7;
+        min-height: 100vh !important;
     }
 }
 
