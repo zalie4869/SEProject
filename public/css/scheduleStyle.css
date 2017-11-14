@@ -1,0 +1,118 @@
+body
+  font-family: Raleway, sans-serif
+th
+[class*="vote-"]
+  padding: 5px
+  font-size: 20px
+  font-weight: normal
+
+.open-bottom 
+  border-top: 1px solid #ccc
+  border-right: 1px solid #ccc
+  border-left: 1px solid #ccc
+  
+.open-top
+  border-right: 1px solid #ccc
+  border-left: 1px solid #ccc
+
+.open-right
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #ccc
+  border-left: 1px solid #ccc
+
+.monospace
+  font-family: monospace
+  font-weight: lighter
+
+.open-top.monospace
+  font-size: 12px
+
+.bolder
+  font-weight: bolder
+
+.voter-name
+  position: absolute
+  background: rgba(0,0,0,.4)
+  color: white
+  &:after
+    width: 0 
+    height: 0 
+    border-top: 60px solid transparent
+    border-bottom: 60px solid transparent
+    border-left: 60px solid green
+
+[class*="vote-"]
+  color: rgba(0,0,0,0)
+  user-select: none
+  outline-offset: -1px
+  outline: 1px solid rgba(0,0,0,.2)
+  box-sizing: border-box
+
+myRed = 360
+myYellow = 57
+myGreen = 115
+myPurple = 281
+colors = myRed myYellow myGreen myPurple
+saturation = 100%
+lightness = 40%
+voteAlpha = .5
+pickAlpha = 1
+
+for color, n in colors
+  .vote-{n}
+    background: hsla(color, saturation, lightness, voteAlpha)
+  .pick-{n}
+    background: hsla(color, saturation, lightness, pickAlpha)
+
+.person-name
+  padding-right: 10px
+  input
+    width: 100%  
+    min-width: 115px
+    height: 35px
+    border: none
+    border-bottom: 3px solid hsl(myPurple, saturation, lightness)
+    background: hsla(46, 100%, 82%, .4)
+    padding: 0 5px
+    font-weight: bolder
+    &:focus
+      background: none
+      outline: none
+  
+.glyphicon
+  color: white
+  padding: 10px
+  width: 100%
+  font-size: 20px
+  
+.text-center
+  text-align: center
+
+.center-children
+  text-align: center
+  & > *
+    text-align: center
+    display: inline-block
+
+.table-container
+  width: 100%
+  overflow-x: auto
+
+button[class*="pick-"]
+  border: 1px solid white
+  border-radius: 50%
+  &:focus
+    outline: none
+  
+.submit-button
+  background: #5CB85C
+  border: none
+  color: white
+  font-size: 2.5em
+  font-weight: bold
+  padding: 10px 20px
+  
+.edit-votes-btn
+.delete-votes-btn
+  color: #888
+  

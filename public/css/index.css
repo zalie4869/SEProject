@@ -1,0 +1,20 @@
+.aa{
+    border-bottom : 2px solid; 
+}
+
+.blur{
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+}
+
+.highlight{
+    background-color: red;
+}
+
+tr.selected {
+    background-color: #FFCF8B
+}
+
+.table-condensed tr:last-child{
+  border-bottom: #dddddd solid 1px;
+}

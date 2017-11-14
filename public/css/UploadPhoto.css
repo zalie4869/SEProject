@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+*{font-family: 'Roboto', sans-serif;}
+
+.wrap{
+  width:250px;
+  margin:0 auto;
+  text-align:center;
+  overflow: hidden;
+}
+label[for=upload]{
+  display:inline-block;
+  border:3px solid #ccc;
+  color:#666;
+  font-weight:bold;
+  background:#eee;
+  padding:8px 15px;
+  border-radius:5px;
+  cursor:pointer
+}
+label[for=upload]:hover{
+  background:#ddd
+  height:250px;
+  width:250px;
+}
+label[for=upload] input{ display:none }
+.thumb{
+  position:relative;
+  height:250px;
+  width:250px;
+  overflow:hidden;
+  margin:40px 0;
+  cursor:move;
+  
+}
+.thumb:before{
+  content:"";
+  display:block;
+  position:absolute;
+  width:96%;
+  height:96%;
+  border:3px dashed #eee;
+  z-index:9;
+  top:1%;
+  left:1%;
+  opacity:0;
+  transition:all 0.2s;
+  pointer-events:none
+}
+.thumb:hover::before{
+  opacity:0.6
+}
+.thumb img{
+  width:100%;
+  max-width:800px;
+  max-height:800px;
+  transition:all 0.4s;
+}
