@@ -394,11 +394,12 @@
                 url: '/employee/getdata',
                 data: {
                     '_token'    : $('meta[name="csrf-token"]').attr('content'),
-                    'ID'        : $emp
+                    'ID'        : $emp,
+                    'data'      : $("editForm")
                 },
                 dataType: 'JSON'
             }).done(function(data){
-                console.log(data.Employee);
+                console.log(data);
                 $("#loadingEdit").hide();
                 $('#IDEmployee2').val(data.Employee[0].IDEmployee);
                 $('#NameTitle2').val(data.Employee[0].NameTitle);
@@ -524,6 +525,7 @@
 
             }).fail(function(e){
                 console.log("Error");
+                //alert("ไม่สามารถเปิดข้อมูลได้");
             });
         });
 
