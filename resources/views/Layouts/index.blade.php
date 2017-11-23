@@ -25,12 +25,12 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style=" background-color: #5192C4;">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">STORE</a>
+                <a class="navbar-brand" href="#" style="color: #00003D;">STORE</a>
             </div>
 
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -38,9 +38,9 @@
             </button>
 
             <ul class="nav navbar-right navbar-top-links">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> รวิพล <b class="caret"></b>
+                <li class="dropdown"  >
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">
+                        <i class="fa fa-user fa-fw" style="color: #00003D;"></i> รวิพล <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
@@ -59,19 +59,19 @@
                 <div class="sidebar-nav navbar-collapse" style="max-height: none;">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{{route('schedule.index')}}" class="active"><img src = "{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
+                            <a href="{{route('schedule.index')}}" class="active" style="color: #00003D;"><img src = "{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
                         </li>
                         <li>
-                            <a href="{{route('employee.page')}}" class="active"><img src="{{ asset('image/people.PNG') }}">ข้อมูลพนักงาน</a>
+                            <a href="{{route('employee.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/people.PNG') }}">ข้อมูลพนักงาน</a>
                         </li>
                         <li>
-                            <a href="{{route('schedule.index')}}" class="active"><img src="{{ asset('image/Employee.PNG') }}">ตารางทำงาน</a>
+                            <a href="{{route('schedule.index')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/Employee.PNG') }}">ตารางทำงาน</a>
                         </li>
                         <li>
-                            <a href="{{route('salary.page')}}" class="active"><img src="{{ asset('image/money.PNG') }}">คำนวณเงินเดือน</a>
+                            <a href="{{route('salary.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/money.PNG') }}">คำนวณเงินเดือน</a>
                         </li>
                         <li>
-                            <a href="{{route('Download.page')}}" class="active"><img src="{{ asset('image/document.PNG') }}">อัพโหลดเอกสาร</a>
+                            <a href="{{route('Download.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/document.PNG') }}">อัพโหลดเอกสาร</a>
                         </li>
                     </ul>
                 </div>

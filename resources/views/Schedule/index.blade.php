@@ -39,7 +39,10 @@
 
     <script src = "{{asset('js/custom.js')}}"></script>
     <style>
-        @media print{
+        
+        
+
+            @media print{
             @page {size: landscape}  
             .no-print, .no-print *{
                 display: none !important;
@@ -125,12 +128,12 @@
                 <button class = "btn btn-primary btn-block" onclick = "showinfoinsert()">
                     <span class="glyphicon glyphicon-plus"></span> Insert</button>
             </div> -->
-            <div class = "col-md-3 col-xs-4">
-                <button class = "btn btn-warning btn-block" onclick = "showinfoedit()">
+            <div class = "col-md-3 col-xs-4" >
+                <button class = "btn btn-primary btn-block" onclick = "showinfoedit()" >
                     <span class="glyphicon glyphicon-pencil"></span> Edit</button>
             </div>
             <div class = "col-md-3 col-xs-4">
-                <button class = "btn btn-warning btn-block" onclick = "window.print()">
+                <button class = "btn btn-primary btn-block" onclick = "window.print()">
                     <span class="glyphicon glyphicon-print"></span> Print</button>
             </div>
             <!-- <div class = "col-md-3 col-xs-4">
@@ -193,7 +196,7 @@
              </div>
         
             <div   class=" no-print col-md-3 col-xs-4" style = "display : none; margin-left:-15px; margin-top:10px;              margin-bottom :     15px" id = "btn-edit">
-                 <button type="submit" onclick = "addedit()" class = "btn btn-warning btn-block">Edit <span class="glyphicon glyphicon-user"></span></button>
+                 <button type="submit" onclick = "addedit()" class = "btn btn-primary btn-block">Edit <span class="glyphicon glyphicon-user"></span></button>
         </div>
         </form>
 
