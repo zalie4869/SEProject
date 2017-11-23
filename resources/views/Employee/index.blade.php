@@ -394,8 +394,7 @@
                 url: '/employee/getdata',
                 data: {
                     '_token'    : $('meta[name="csrf-token"]').attr('content'),
-                    'ID'        : $emp,
-                    'data'      : $("editForm")
+                    'ID'        : $emp
                 },
                 dataType: 'JSON'
             }).done(function(data){
@@ -530,17 +529,39 @@
         });
 
         $("#editForm").submit(function(e){
+            var jsonObj = {};
+            jQuery.map( $("#editForm").serializeArray(), function( n, i ) {
+                jsonObj[n.name] = n.value;
+            });
             $.ajax({
                 type: 'POST',
                 url: '/employee/edit',
                 data: {
                     '_token'    : $('meta[name="csrf-token"]').attr('content'),
                     'ID'        : $emp,
-                    'data'      : $("#editForm").serializeArray()
+                    'data'      : jsonObj
                 },
                 dataType: 'JSON'
             }).done(function(data){
-                console.log(data);
+                //console.log(data.error);
+
+                if(data.error === 'IDEmployee'){
+                    $('#dupTextEdit').html('รหัสพนักงานซ้ำซ้อน');
+                    $('#EditDup').modal('show');
+                    return;
+                }
+                else if(data.error === 'IDCardNo'){
+                    $('#dupTextEdit').html('หมายเลขบัตรประชาชนซ้ำซ้อน');
+                    $('#EditDup').modal('show');
+                    return;
+                }
+                
+                $('#edit').modal('hide');
+                $('#EditSuccess').modal('show');
+                setTimeout(function(){
+                    location.reload();
+                },550);
+                
             }).fail(function(e){
                 console.log("Error");
             });
@@ -581,102 +602,102 @@
                     $('#DelSuccess').modal("hide");
                 },1500);
 
-                if(data.content === 1){
-                    var $tr = $("<tr>", {id: data.Employees[0].IDEmployee});
-                    var $td1 = $("<td>");
-                    var $center1 = $("<center>",{text:data.Employees[0].IDEmployee});
-                    var $td2 = $("<td>");
-                    var $center2 = $("<center>",{id:"FirstName",text:data.Employees[0].FirstName});
-                    var $td3 = $("<td>");
-                    var $center3 = $("<center>",{id:"LastName",text:data.Employees[0].LastName});
+                // if(data.content === 1){
+                //     var $tr = $("<tr>", {id: data.Employees[0].IDEmployee});
+                //     var $td1 = $("<td>");
+                //     var $center1 = $("<center>",{text:data.Employees[0].IDEmployee});
+                //     var $td2 = $("<td>");
+                //     var $center2 = $("<center>",{id:"FirstName",text:data.Employees[0].FirstName});
+                //     var $td3 = $("<td>");
+                //     var $center3 = $("<center>",{id:"LastName",text:data.Employees[0].LastName});
 
-                    var $td4 = $("<td>");
-                    if(data.Employees[0].Position === 'BranchManager'){
-                        var $center4 = $("<center>",{text:'ผู้จัดการ'});
-                    }
-                    else if(data.Employees[0].Position === 'AssistantManager'){
-                        var $center4 = $("<center>",{text:'ผู้ช่วยผู้จัดการ'});
-                    }
-                    else if(data.Employees[0].Position === 'StaffFull-Time'){
-                        var $center4 = $("<center>",{text:'พนักงานประจำ'});      
-                    }
-                    else if(data.Employees[0].Position === 'StaffPart-time'){
-                        var $center4 = $("<center>",{text:'พนักงานชั่วคราว'});        
-                    }
-                    else{
-                        var $center4 = $("<center>",{text:''});
-                    }  
+                //     var $td4 = $("<td>");
+                //     if(data.Employees[0].Position === 'BranchManager'){
+                //         var $center4 = $("<center>",{text:'ผู้จัดการ'});
+                //     }
+                //     else if(data.Employees[0].Position === 'AssistantManager'){
+                //         var $center4 = $("<center>",{text:'ผู้ช่วยผู้จัดการ'});
+                //     }
+                //     else if(data.Employees[0].Position === 'StaffFull-Time'){
+                //         var $center4 = $("<center>",{text:'พนักงานประจำ'});      
+                //     }
+                //     else if(data.Employees[0].Position === 'StaffPart-time'){
+                //         var $center4 = $("<center>",{text:'พนักงานชั่วคราว'});        
+                //     }
+                //     else{
+                //         var $center4 = $("<center>",{text:''});
+                //     }  
 
-                    var $td5 = $("<td>");
-                    var $center5 = $("<center>",{text:data.Employees[0].Email});
-                    var $td6 = $("<td>");
-                    var $center6 = $("<center>",{text:data.Employees[0].Phone});
+                //     var $td5 = $("<td>");
+                //     var $center5 = $("<center>",{text:data.Employees[0].Email});
+                //     var $td6 = $("<td>");
+                //     var $center6 = $("<center>",{text:data.Employees[0].Phone});
 
-                    var $td7 = $("<td>");
-                    if(data.Employees[0].WorkingStatus === 'Working'){
-                        var $center7 = $("<center>",{text: 'ทำงานอยู่'});
-                        $center7.prepend($("<div>").addClass('sphere green'));
-                    }
-                    else if(data.Employees[0].WorkingStatus === 'Suspended'){
-                        var $center7 = $("<center>",{text: 'พักงาน'});
-                        $center7.prepend($("<div>").addClass('sphere blue'));
-                    }
-                    else if(data.Employees[0].WorkingStatus === 'NotWorking'){
-                        var $center7 = $("<center>",{text: 'ลาออก'});
-                        $center7.prepend($("<div>").addClass('sphere orange'));
-                    }
-                    else if(data.Employees[0].WorkingStatus === 'InviteOut'){
-                        var $center7 = $("<center>",{text: 'เชิญออก'});
-                        $center7.prepend($("<div>").addClass('sphere red'));
-                    }
-                    else{
-                        var $center7 = $("<center>",{text: ''});
-                    }
+                //     var $td7 = $("<td>");
+                //     if(data.Employees[0].WorkingStatus === 'Working'){
+                //         var $center7 = $("<center>",{text: 'ทำงานอยู่'});
+                //         $center7.prepend($("<div>").addClass('sphere green'));
+                //     }
+                //     else if(data.Employees[0].WorkingStatus === 'Suspended'){
+                //         var $center7 = $("<center>",{text: 'พักงาน'});
+                //         $center7.prepend($("<div>").addClass('sphere blue'));
+                //     }
+                //     else if(data.Employees[0].WorkingStatus === 'NotWorking'){
+                //         var $center7 = $("<center>",{text: 'ลาออก'});
+                //         $center7.prepend($("<div>").addClass('sphere orange'));
+                //     }
+                //     else if(data.Employees[0].WorkingStatus === 'InviteOut'){
+                //         var $center7 = $("<center>",{text: 'เชิญออก'});
+                //         $center7.prepend($("<div>").addClass('sphere red'));
+                //     }
+                //     else{
+                //         var $center7 = $("<center>",{text: ''});
+                //     }
                     
-                    var $td8 = $("<td>");
-                    var $center8 = $("<center>");
-                    var $p1 = $("<p>").attr({"data-placement":"top","data-toggle":"tooltip","title":"Edit"});
-                    var $button1 = $("<button>").attr({"class":"btn btn-primary btn-xs press-edit","data-title":"Edit","data-toggle":"modal","data-target":"#edit"});
-                    var $span1 = $("<span>",{class:"glyphicon glyphicon-pencil"})
-                    $button1.append($span1);
-                    $p1.append($button1)
-                    $center8.append($p1);
+                //     var $td8 = $("<td>");
+                //     var $center8 = $("<center>");
+                //     var $p1 = $("<p>").attr({"data-placement":"top","data-toggle":"tooltip","title":"Edit"});
+                //     var $button1 = $("<button>").attr({"class":"btn btn-primary btn-xs press-edit","data-title":"Edit","data-toggle":"modal","data-target":"#edit"});
+                //     var $span1 = $("<span>",{class:"glyphicon glyphicon-pencil"})
+                //     $button1.append($span1);
+                //     $p1.append($button1)
+                //     $center8.append($p1);
 
-                    var $td9 = $("<td>");
-                    var $center9 = $("<center>");
-                    var $p2 = $("<p>").attr({"data-placement":"top","data-toggle":"tooltip","title":"Delete"});
-                    var $button2 = $("<button>").attr({"class":"btn btn-danger btn-xs","data-title":"Delete","data-toggle":"modal","data-target":"#delete","value":data.Employees[0].IDEmployee,"onclick":"clickDelete(value)"});
-                    var $span2 = $("<span>",{class:"glyphicon glyphicon-trash"})
-                    $button2.append($span2);
-                    $p2.append($button2)
-                    $center9.append($p2);
+                //     var $td9 = $("<td>");
+                //     var $center9 = $("<center>");
+                //     var $p2 = $("<p>").attr({"data-placement":"top","data-toggle":"tooltip","title":"Delete"});
+                //     var $button2 = $("<button>").attr({"class":"btn btn-danger btn-xs","data-title":"Delete","data-toggle":"modal","data-target":"#delete","value":data.Employees[0].IDEmployee,"onclick":"clickDelete(value)"});
+                //     var $span2 = $("<span>",{class:"glyphicon glyphicon-trash"})
+                //     $button2.append($span2);
+                //     $p2.append($button2)
+                //     $center9.append($p2);
 
-                    $td1.append($center1);
-                    $td2.append($center2);
-                    $td3.append($center3);
-                    $td4.append($center4);
-                    $td5.append($center5);
-                    $td6.append($center6);
-                    $td7.append($center7);
-                    $td8.append($center8);
-                    $td9.append($center9);
+                //     $td1.append($center1);
+                //     $td2.append($center2);
+                //     $td3.append($center3);
+                //     $td4.append($center4);
+                //     $td5.append($center5);
+                //     $td6.append($center6);
+                //     $td7.append($center7);
+                //     $td8.append($center8);
+                //     $td9.append($center9);
 
-                    $tr.append($td1);
-                    $tr.append($td2);
-                    $tr.append($td3);
-                    $tr.append($td4);
-                    $tr.append($td5);
-                    $tr.append($td6);
-                    $tr.append($td7);
-                    $tr.append($td8);
-                    $tr.append($td9);
+                //     $tr.append($td1);
+                //     $tr.append($td2);
+                //     $tr.append($td3);
+                //     $tr.append($td4);
+                //     $tr.append($td5);
+                //     $tr.append($td6);
+                //     $tr.append($td7);
+                //     $tr.append($td8);
+                //     $tr.append($td9);
 
-                    $('#contentBody').append($tr);
-                }
+                //     $('#contentBody').append($tr);
+                // }
 
-                // setTimeout(function(){
-                //     location.reload();
-                // },1000);
+                setTimeout(function(){
+                    location.reload();
+                },550);
                 
 
             }).fail(function(e){

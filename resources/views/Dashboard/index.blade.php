@@ -1,70 +1,130 @@
 @extends('layouts.index')
 @section('content')
-<br><br><br><br>
-<form method="post" id="form" action="{{ route('employee.insert') }}" enctype="multipart/form-data">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <div  id="insert" tabindex="-1" role="dialog" aria-labelledby="insert" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-                    <h4 class="modal-title custom_align" id="Heading">TEST</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label >text1</label>
-                        <input type="text" class="form-control" name="text1" id="text1" style="width: 200px;" required>
-                    </div>
-                    <div class="form-group">
-                        <label >text1</label>
-                        <input type="text" class="form-control" name="text2" id="text2" style="width: 200px;" required>
-                    </div>
-                    <div class="form-group">
-                        <label >text1</label>
-                        <input type="date" class="form-control" name="date" id="date" style="width: 200px;" required>
-                    </div>
-                    
-                <div class="modal-footer ">
-                    <button type="submit" class="btn btn-success btn-lg" id="submit" style="width: 100%;">
-                        <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;เพิ่มข้อมูล
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-<div>
-    <center>
-        <p>text1&nbsp;text2&nbsp;date</p>
-    </center>
-</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<script type="text/javascript">
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-    $(document).ready(function(){
-        $('#submit').submit(function) {
-            var text1 = $('#text1').val();
-            var text1 = $('#text1').val();
-            var date = $('#date').val();
-            console.log("text1 : " + text);
-            $.ajax({
-                type: "POST",
-                url: "/test.t",
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                    'text1': $('#text1').val(),
-                    'text2': $('#text1').val(),
-                    'date': $('#date').val()
-                },
-            });
-        });
-    });
-</script>
+    <title>STORE</title>
+    
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/timeline.css')}}" rel="stylesheet">
+    <link href="{{asset('css/startmin.css')}}" rel="stylesheet">
+    <link href="{{asset('css/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('bootstrap-3.3.7-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dash.css')}}">
+
+    <meta name="viewport" content="{{asset('width=device-width, initial-scale=1.0')}}">
+    <meta charset="UTF-8">
+    <script src = "{{asset('js/index.js')}}"></script>
+    <script
+    src="{{asset('https://code.jquery.com/jquery-3.2.1.js')}}"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+
+    <script src = "{{asset('js/custom.js')}}"></script>
+
+    <link href="{{asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('https://cdn.oesmith.co.uk/morris-0.5.1.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/g.css')}}" rel="stylesheet" type="text/css">
+
+</head>
+<!-- Page Content -->
+
+
+
+<div id="page-wrapper" style="border-color: #222;">
+        <h1 class="page-header ">ตารางการทำงาน</h1>
+    <div class = "table-responsive">
+            <table class = "table table-hover table-condensed" id = "mytable">
+                <thead>
+                    <tr>
+                        <!-- <th>#</th> -->
+                        <th>Name-Surname</th>
+                        <th>ตำแหน่ง</th>
+                        <th>Phone Number</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($Employees as $Employee)
+                        <tr onclick = "editfunction(this)">
+                            <td style="display: none;">{{$Employee->EmpID}}</td>
+                            <td>{{$Employee->FirstName}} {{$Employee->LastName}}</td>
+                            <td>{{$Employee->Position}}</td>
+                            <td>{{$Employee->Phone}}</td>
+                        @if(count($Schedule)!=0)
+                            <?php $check = true; ?>
+                            @foreach($Schedule as $getnum) 
+                                @if($getnum->EmpID==$Employee->EmpID)
+                                    <td >{{$getnum->Mon}}</td>
+                                    <td>{{$getnum->Tue}}</td>
+                                    <td>{{$getnum->Wed}}</td>
+                                    <td>{{$getnum->Thu}}</td>
+                                    <td>{{$getnum->Fri}}</td>
+                                    <td>{{$getnum->Sat}}</td>
+                                    <td>{{$getnum->Sun}}</td>
+                                    <?php $check = false; ?>
+                                 
+                                @endif
+                            @endforeach
+                            @if($check)
+                                <td ></td>
+                                <td ></td>
+                                <td ></td>
+                                <td ></td>
+                                <td ></td>
+                                <td ></td>
+                                <td ></td>
+                            @endif
+                        @else
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                        @endif
+                    @endforeach
+                        </tr>
+                </tbody>
+            </table>
+         </div>
+
+    </div>
+
+   </div>
+
+
+   <div class="row">
+    <div class="col-sm-6" ></div>
+    <div class="col-sm-6 " style= "position=absolute;" text-center">
+      <div id="area-chart" ></div>
+    </div>
+  </div>
+
+  
+
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/metisMenu.min.js')}}"></script>
+<script src="{{asset('js/startmin.js')}}"></script>
+
+<script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')}}"></script>
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js')}}"></script>
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js')}}"></script>
+<script src="{{asset('js/g.js')}}"></script>
+
 
 @stop

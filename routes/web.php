@@ -11,6 +11,10 @@
 |
 */
 
+//--------------Dashboard----------------//
+
+Route::get('/dashboard',['as'=>'dashboard.index','uses'=>'DashboardController@Index']);
+
 //--------------Employee---------------//
 
 Route::get('/', function () {

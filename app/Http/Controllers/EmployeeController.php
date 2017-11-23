@@ -24,10 +24,10 @@ class EmployeeController extends Controller
       $d = $request->input('d');
       $lastPage = $Employees->count()/$limit;
 
-      if($sort === null){
+      if($sort == null){
         $sort = 'IDEmployee';
       }
-      if($d === null){
+      if($d == null){
         $d = 'ASC';
       }
 
@@ -59,55 +59,55 @@ class EmployeeController extends Controller
         $start = ($page-1)*$limit;
       }
 
-      if($sort === 'IDEmployee'){
-        if($d === 'ASC'){
+      if($sort == 'IDEmployee'){
+        if($d == 'ASC'){
           $Employees = $Employees->orderBy('IDEmployee','ASC')->offset($start)->limit($limit)->get();
         }
-        else if($d === 'DESC'){
+        else if($d == 'DESC'){
           $Employees = $Employees->orderBy('IDEmployee','DESC')->offset($start)->limit($limit)->get();
         }
         else{
           $Employees = $Employees->orderBy('IDEmployee','ASC')->offset($start)->limit($limit)->get();
         }
       }
-      else if($sort === 'FirstName'){
-        if($d === 'ASC'){
+      else if($sort == 'FirstName'){
+        if($d == 'ASC'){
           $Employees = $Employees->orderBy('FirstName','ASC')->offset($start)->limit($limit)->get();
         }
-        else if($d === 'DESC'){
+        else if($d == 'DESC'){
           $Employees = $Employees->orderBy('FirstName','DESC')->offset($start)->limit($limit)->get();
         }
         else{
           $Employees = $Employees->orderBy('FirstName','ASC')->offset($start)->limit($limit)->get();
         }
       }
-      else if($sort === 'LastName'){
-        if($d === 'ASC'){
+      else if($sort == 'LastName'){
+        if($d == 'ASC'){
           $Employees = $Employees->orderBy('LastName','ASC')->offset($start)->limit($limit)->get();
         }
-        else if($d === 'DESC'){
+        else if($d == 'DESC'){
           $Employees = $Employees->orderBy('LastName','DESC')->offset($start)->limit($limit)->get();
         }
         else{
           $Employees = $Employees->orderBy('LastName','ASC')->offset($start)->limit($limit)->get();
         }
       }
-      else if($sort === 'Position'){
-        if($d === 'ASC'){
+      else if($sort == 'Position'){
+        if($d == 'ASC'){
           $Employees = $Employees->orderBy('Position','ASC')->offset($start)->limit($limit)->get();
         }
-        else if($d === 'DESC'){
+        else if($d == 'DESC'){
           $Employees = $Employees->orderBy('Position','DESC')->offset($start)->limit($limit)->get();
         }
         else{
           $Employees = $Employees->orderBy('Position','ASC')->offset($start)->limit($limit)->get();
         }
       }
-      else if($sort === 'WorkingStatus'){
-        if($d === 'ASC'){
+      else if($sort == 'WorkingStatus'){
+        if($d == 'ASC'){
           $Employees = $Employees->orderByRaw("FIELD(WorkingStatus,'Working','Suspended','NotWorking','InviteOut') ASC")->offset($start)->limit($limit)->get();
         }
-        else if($d === 'DESC'){
+        else if($d == 'DESC'){
           $Employees = $Employees->orderByRaw("FIELD(WorkingStatus,'Working','Suspended','NotWorking','InviteOut') DESC")->offset($start)->limit($limit)->get();
         }
         else{
@@ -140,122 +140,126 @@ class EmployeeController extends Controller
 
     public function Edit(Request $request){
 		  //dd($request->all());
-      return response()->json(['success' => 'Record has been edited successfully!',
-                               'Request' => $request->data]);
+      
+      $Employee = Employee::where('IDEmployee','=',$request->ID)->first();
+      $IDCard = IDCard::where('CardID','=',$Employee->CardID)->first();
+      $Education = Education::where('EducationID','=',$Employee->EducationID)->first();
+      $Family = Family::where('FamilyID','=',$Employee->FamilyID)->first();
+      $Guarantor = Guarantor::where('GuarantorID','=',$Employee->GuarantorID)->first();
+      $PersonNotify = PersonNotify::where('PersonID','=',$Employee->PersonID)->first();
+      $WorkExperience = WorkExperience::where('WorkingExID','=',$Employee->WorkingExID)->first();
 
+      if($request->data['IDEmployee'] != $Employee->IDEmployee){
+        $nEmployee = Employee::where('IDEmployee','=',$request->data['IDEmployee'])->get()->count();
+        if($nEmployee){
+          return response()->json(['error' => 'IDEmployee']);
+        }
+      }
 
-      $employee = Employee::where('IDEmployee','=',$request->ID)->first();
-      $IDCard = IDCard::where('CardID','=',$employee->CardID)->first();
-      $Education = Education::where('EducationID','=',$employee->EducationID)->first();
-      $Family = Family::where('FamilyID','=',$employee->FamilyID)->first();
-      $Guarantor = Guarantor::where('GuarantorID','=',$employee->GuarantorID)->first();
-      $PersonNotify = PersonNotify::where('PersonID','=',$employee->PersonID)->first();
-      $WorkExperience = WorkExperience::where('WorkingExID','=',$employee->WorkingExID)->first();
+      if($request->data['IDCardNo'] != $IDCard->IDCardNo){
+        $nIDCardNo = IDCard::where('IDCardNo','=',$request->data['IDCardNo'])->get()->count();
+        if($nIDCardNo){
+          return response()->json(['error' => 'IDCardNo']);
+        }
+      }
 
-      $IDCard->IDCardNo = $request->IDCardNo2;
-      $IDCard->IssueDATE = $request->IssueDATE2;
-      $IDCard->ExpireDATE = $request->ExpireDATE2;
-      $IDCard->Nationality = $request->Nationality2;
-      $IDCard->Race = $request->Race2;
-      $IDCard->IDCardAddress = $request->Address2;
+      $IDCard->IDCardNo = $request->data['IDCardNo'];
+      $IDCard->IssueDATE = $request->data['IssueDATE'];
+      $IDCard->ExpireDATE = $request->data['ExpireDATE'];
+      $IDCard->Nationality = $request->data['Nationality'];
+      $IDCard->Race = $request->data['Race'];
+      $IDCard->IDCardAddress = $request->data['Address'];
       $IDCard->save();
-      return response()->json(['success' => 'Record has been edited successfully!',
-                              'employee' => $employee,
-                               'Request' => $request]);
+      
 
-      $Education->NamePrimary = $request->NamePrimary2;
-      $Education->LocatPrimary = $request->LocatPrimary2;
-      $Education->GPA_Primary = $request->GPA_Primary2;
+      $Education->NamePrimary = $request->data['NamePrimary'];
+      $Education->LocatPrimary = $request->data['LocatPrimary'];
+      $Education->GPA_Primary = $request->data['GPA_Primary'];
 
-      $Education->NamSecondary = $request->NamSecondary2;
-      $Education->LocatSecondary = $request->LocatSecondary2;
-      $Education->GPA_Secondary = $request->GPA_Secondary2;
+      $Education->NamSecondary = $request->data['NamSecondary'];
+      $Education->LocatSecondary = $request->data['LocatSecondary'];
+      $Education->GPA_Secondary = $request->data['GPA_Secondary'];
 
-      $Education->NamHigh = $request->NamHigh2;
-      $Education->LocatHigh = $request->LocatHigh2;
-      $Education->Major_High = $request->Major_High2;
-      $Education->GPA_High = $request->GPA_High2;
+      $Education->NamHigh = $request->data['NamHigh'];
+      $Education->LocatHigh = $request->data['LocatHigh'];
+      $Education->Major_High = $request->data['Major_High'];
+      $Education->GPA_High = $request->data['GPA_High'];
 
-      $Education->NamUniversity = $request->NamUniversity2;
-      $Education->LocatUniversity = $request->LocatUniversity2;
-      $Education->Major_University = $request->Major_University2;
-      $Education->GPA_University = $request->GPA_University2;
+      $Education->NamUniversity = $request->data['NamUniversity'];
+      $Education->LocatUniversity = $request->data['LocatUniversity'];
+      $Education->Major_University = $request->data['Major_University'];
+      $Education->GPA_University = $request->data['GPA_University'];
 
-      $Education->NamVocational = $request->NamVocational2;
-      $Education->LocatVocational = $request->LocatVocational2;
-      $Education->Major_Vocational = $request->Major_Vocational2;
-      $Education->GPA_Vocational = $request->GPA_Vocational2;
+      $Education->NamVocational = $request->data['NamVocational'];
+      $Education->LocatVocational = $request->data['LocatVocational'];
+      $Education->Major_Vocational = $request->data['Major_Vocational'];
+      $Education->GPA_Vocational = $request->data['GPA_Vocational'];
 
-      $Education->NamOther = $request->NamOther2;
-      $Education->LocatOther = $request->LocatOther2;
-      $Education->Major_Other = $request->Major_Other2;
-      $Education->GPA_Other = $request->GPA_Other2;
+      $Education->NamOther = $request->data['NamOther'];
+      $Education->LocatOther = $request->data['LocatOther'];
+      $Education->Major_Other = $request->data['Major_Other'];
+      $Education->GPA_Other = $request->data['GPA_Other'];
       $Education->save();
 
-      $Family->FatherFirstName = $request->FatherFirstName2;
-      $Family->FatherLastName = $request->FatherLastName2;
-      $Family->FatherAddress = $request->FatherAddress2;
-      $Family->FatherPhone = $request->FatherPhone2;
+      $Family->FatherFirstName = $request->data['FatherFirstName'];
+      $Family->FatherLastName = $request->data['FatherLastName'];
+      $Family->FatherAddress = $request->data['FatherAddress'];
+      $Family->FatherPhone = $request->data['FatherPhone'];
 
-      $Family->MotherFirstName = $request->MotherFirstName2;
-      $Family->MotherLastName = $request->MotherLastName2;
-      $Family->MotherAddress = $request->MotherAddress2;
-      $Family->MotherPhone = $request->MotherPhone2;
+      $Family->MotherFirstName = $request->data['MotherFirstName'];
+      $Family->MotherLastName = $request->data['MotherLastName'];
+      $Family->MotherAddress = $request->data['MotherAddress'];
+      $Family->MotherPhone = $request->data['MotherPhone'];
 
-      $Family->SpouseFirstName = $request->SpouseFirstName2;
-      $Family->SpouseLastName = $request->SpouseLastName2;
-      $Family->SpouseAddress = $request->SpouseAddress2;
-      $Family->SpousePhone = $request->SpousePhone2;
+      $Family->SpouseFirstName = $request->data['SpouseFirstName'];
+      $Family->SpouseLastName = $request->data['SpouseLastName'];
+      $Family->SpouseAddress = $request->data['SpouseAddress'];
+      $Family->SpousePhone = $request->data['SpousePhone'];
       $Family->save();
 
-      $Guarantor->GuarantorFirstName = $request->GuarantorFirstName2;
-      $Guarantor->GuarantorLastName = $request->GuarantorLastName2;
-      $Guarantor->GuarantorAddress = $request->GuarantorAddress2;
-      $Guarantor->GuarantorPhone = $request->GuarantorPhone2;
+      $Guarantor->GuarantorFirstName = $request->data['GuarantorFirstName'];
+      $Guarantor->GuarantorLastName = $request->data['GuarantorLastName'];
+      $Guarantor->GuarantorAddress = $request->data['GuarantorAddress'];
+      $Guarantor->GuarantorPhone = $request->data['GuarantorPhone'];
       $Guarantor->save();
 
-      $PersonNotify->PersonFirstName = $request->PersonNotifyFirstName2;
-      $PersonNotify->PersonLastName = $request->PersonNotifyLastName2;
-      $PersonNotify->PersonAddress = $request->PersonNotifyAddress2;
-      $PersonNotify->PersonPhone = $request->PersonNotifyPhone2;
+      $PersonNotify->PersonFirstName = $request->data['PersonNotifyFirstName'];
+      $PersonNotify->PersonLastName = $request->data['PersonNotifyLastName'];
+      $PersonNotify->PersonAddress = $request->data['PersonNotifyAddress'];
+      $PersonNotify->PersonPhone = $request->data['PersonNotifyPhone'];
       $PersonNotify->save();
 
-      $WorkExperience->CompanyName = $request->WorkExCompanyName2;
-      $WorkExperience->WorkingExAddress = $request->WorkExAddress2;
-      $WorkExperience->WorkingExPosition = $request->WorkExPosition2;
-      $WorkExperience->WorkingExPhone = $request->WorkExPhone2;
-      $WorkExperience->ReasonForLearing = $request->WorkExReasonForLeaving2;
+      $WorkExperience->CompanyName = $request->data['WorkExCompanyName'];
+      $WorkExperience->WorkingExAddress = $request->data['WorkExAddress'];
+      $WorkExperience->WorkingExPosition = $request->data['WorkExPosition'];
+      $WorkExperience->WorkingExPhone = $request->data['WorkExPhone'];
+      $WorkExperience->ReasonForLearing = $request->data['WorkExReasonForLeaving'];
       $WorkExperience->save();
 
-      $Employee->IDEmployee = $request->IDEmployee2;
-      $Employee->NameTitle = $request->NameTitle2;
-      $Employee->FirstName = $request->FirstName2;
-      $Employee->LastName = $request->LastName2;
-      $Employee->NickName = $request->NickName2;
-      $Employee->Gender = $request->Gender2;
-      $Employee->BirthDate = $request->BirthDate2;
-      $Employee->Height = $request->Height2;
-      $Employee->Weight = $request->Weight2;
-      $Employee->MaritalStatus = $request->MaritalStatus2;
-      $Employee->BloodType = $request->BloodType2;
-      $Employee->Disease = $request->Disease2;
-      $Employee->Email = $request->Email2;
-      $Employee->Phone = $request->Phone2;
-      $Employee->Residence = $request->Residence2;
-      $Employee->PresentAddress = $request->PresentAddress2;
-      $Employee->Position = $request->Position2;
-      $Employee->WorkingStatus = $request->WorkingStatus2;
-
-      $Employee->CardID = $IDCard->CardID;
-      $Employee->EducationID = $Education->EducationID;
-      $Employee->FamilyID = $Family->FamilyID;
-      $Employee->PersonID = $PersonNotify->PersonID;
-      $Employee->GuarantorID = $Guarantor->GuarantorID;
-      $Employee->WorkingExID = $WorkExperience->WorkingExID;
+      $Employee->IDEmployee = $request->data['IDEmployee'];
+      $Employee->NameTitle = $request->data['NameTitle'];
+      $Employee->FirstName = $request->data['FirstName'];
+      $Employee->LastName = $request->data['LastName'];
+      $Employee->NickName = $request->data['NickName'];
+      $Employee->Gender = $request->data['Gender'];
+      $Employee->BirthDate = $request->data['BirthDate'];
+      $Employee->Height = $request->data['Height'];
+      $Employee->Weight = $request->data['Weight'];
+      $Employee->MaritalStatus = $request->data['MaritalStatus'];
+      $Employee->BloodType = $request->data['BloodType'];
+      $Employee->Disease = $request->data['Disease'];
+      $Employee->Email = $request->data['Email'];
+      $Employee->Phone = $request->data['Phone'];
+      $Employee->Residence = $request->data['Residence'];
+      $Employee->PresentAddress = $request->data['PresentAddress'];
+      $Employee->Position = $request->data['Position'];
+      $Employee->WorkingStatus = $request->data['WorkingStatus'];
       
       $Employee->save();
 
-      return response()->json(['success' => 'Record has been edited successfully!']);
+      return response()->json(['success' => 'Record has been edited successfully!',
+                              'employee' => $Employee,
+                               'Request' => $request->data]);
     }
 
     public function Insert(Request $request){
@@ -395,16 +399,16 @@ class EmployeeController extends Controller
       $d = $request->d;
       $content = 0;
 
-      if($sort === null){
+      if($sort == null){
         $sort = 'IDEmployee';
       }
-      if($d === null){
+      if($d == null){
         $d = 'ASC';
       }
 
       $Employees = new Employee;
 
-      if($request->page === $request->lastPage){
+      if($request->page == $request->lastPage){
         $content = 0;
       }
       else{

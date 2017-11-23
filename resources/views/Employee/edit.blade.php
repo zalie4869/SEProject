@@ -389,6 +389,28 @@
     </div>
 </form>
 
+<!-- Success -->
+<div class="modal fade" id="EditSuccess" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #ffdf80; border-radius: 4px; border-color: #e6ac00; color: #997300;">
+                <p><center>แก้ไขข้อมูลเรียบร้อยแล้ว</center></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duplicate -->
+<div class="modal fade" id="EditDup" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #f2dede; border-radius: 4px; border-color: #ebccd1; color: #a94442;">
+                <p><center id="dupTextEdit"></center></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     function changeMaritalStatus2(){

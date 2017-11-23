@@ -59,7 +59,7 @@
                 <div class="sidebar-nav navbar-collapse" style="max-height: none;">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{{route('schedule.index')}}" class="active"><img src = "{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
+                            <a href="{{route('dashboard.index')}}" class="active"><img src = "{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
                         </li>
                         <li>
                             <a href="{{route('employee.page')}}" class="active"><img src="{{ asset('image/people.PNG') }}">ข้อมูลพนักงาน</a>
