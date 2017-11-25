@@ -381,7 +381,7 @@
                 </div> 
                 <div class="modal-footer ">
                     <button type="submit" id="clickUpdate" class="btn btn-warning btn-lg" style="width: 100%;">
-                        <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Update
+                        <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;แก้ไข
                     </button>
                 </div>
             </div>
@@ -394,7 +394,7 @@
     <div class="modal-dialog modal-sm" style="top: 30%">
         <div class="modal-content">
             <div class="modal-body" style="background-color: #ffdf80; border-radius: 4px; border-color: #e6ac00; color: #997300;">
-                <p><center>แก้ไขข้อมูลเรียบร้อยแล้ว</center></p>
+                <p><center>แก้ไขข้อมูลพนักงานเรียบร้อยแล้ว</center></p>
             </div>
         </div>
     </div>

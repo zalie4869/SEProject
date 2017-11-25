@@ -1,6 +1,5 @@
 <!-- Insert Employee Details -->
-<form method="post" action="{{ route('employee.insert') }}" enctype="multipart/form-data">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+<form id="insertForm">
     <div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="insert" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -375,7 +374,7 @@
                     </div>
                 </div> 
                 <div class="modal-footer ">
-                    <button type="submit" class="btn btn-success btn-lg" id="insertButton" style="width: 100%;">
+                    <button type="submit" class="btn btn-success btn-lg" id="clickInsert" style="width: 100%;">
                         <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;เพิ่มข้อมูล
                     </button>
                 </div>
@@ -383,6 +382,28 @@
         </div>
     </div>
 </form>
+
+<!-- Success -->
+<div class="modal fade" id="InsertSuccess" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #ccffcc; border-radius: 4px; border-color: #009900; color: #008000;">
+                <p><center>เพิ่มข้อมูลพนักงานเรียบร้อยแล้ว</center></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duplicate -->
+<div class="modal fade" id="InsertDup" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #f2dede; border-radius: 4px; border-color: #ebccd1; color: #a94442;">
+                <p><center id="dupTextInsert"></center></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 

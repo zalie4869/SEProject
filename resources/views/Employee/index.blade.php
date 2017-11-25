@@ -398,7 +398,7 @@
                 },
                 dataType: 'JSON'
             }).done(function(data){
-                console.log(data);
+                //console.log(data);
                 $("#loadingEdit").hide();
                 $('#IDEmployee2').val(data.Employee[0].IDEmployee);
                 $('#NameTitle2').val(data.Employee[0].NameTitle);
@@ -568,6 +568,45 @@
             e.preventDefault();
         });
 
+        $("#insertForm").submit(function(e){
+            var jsonObj = {};
+            jQuery.map( $("#insertForm").serializeArray(), function( n, i ) {
+                jsonObj[n.name] = n.value;
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/employee/insert',
+                data: {
+                    '_token'    : $('meta[name="csrf-token"]').attr('content'),
+                    'data'      : jsonObj
+                },
+                dataType: 'JSON'
+            }).done(function(data){
+                //console.log(data.error);
+
+                if(data.error === 'IDEmployee'){
+                    $('#dupTextInsert').html('รหัสพนักงานซ้ำซ้อน');
+                    $('#InsertDup').modal('show');
+                    return;
+                }
+                else if(data.error === 'IDCardNo'){
+                    $('#dupTextInsert').html('หมายเลขบัตรประชาชนซ้ำซ้อน');
+                    $('#InsertDup').modal('show');
+                    return;
+                }
+                
+                $('#insert').modal('hide');
+                $('#InsertSuccess').modal('show');
+                setTimeout(function(){
+                    location.reload();
+                },550);
+                
+            }).fail(function(e){
+                console.log("Error");
+            });
+            e.preventDefault();
+        });
+
         $("#delete").on('hidden.bs.modal', function(){
             $('#clickYes').removeClass('disabled');
             $('#loadingDelete').hide();
@@ -698,16 +737,10 @@
                 setTimeout(function(){
                     location.reload();
                 },550);
-                
-
             }).fail(function(e){
                 console.log("Error");
             });
         });
-
-        // $('#insertButton').click(function(){
-        //     alert("ASDASD");
-        // });
     });
 </script>
 
