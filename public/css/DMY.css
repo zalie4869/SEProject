@@ -242,3 +242,37 @@ div.the-year {
   -webkit-border-radius: 2px;
   border: 1px solid rgba(0,0,0,0.1);
 }
+
+.row{
+  margin-bottom : 15px;
+}
+
+
+
+tr.selected {
+  background-color: #FFCF8B !important;
+}
+
+hr{
+  margin-top : 35px !important;
+  margin-bottom : 35px !important;
+}
+
+@media screen and (min-width : 767px){
+  .center{
+    text-align: center;
+  }
+  .rowbottom{
+    margin-bottom : 15px;
+  }
+}
+
+@media screen and (max-width : 768px){
+  .paddingleft{
+    padding-left : 0px;
+  }
+
+  .marginbottom{
+    margin-bottom : 15px;
+  }
+}

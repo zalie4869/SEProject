@@ -7,9 +7,18 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 30px 0px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    float: right;
+    width: 100%;
+}
+.require{
+    height:20px;
+    color:#FF0000;
+    padding-left:5px;
+    padding-right:5px;
+    font-size:12px;
+    line-height:15px;
+    width:100px;
+    float:none;
 }

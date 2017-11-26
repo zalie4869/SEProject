@@ -16,7 +16,7 @@
     <link href="{{asset('css/morris.css')}}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/upload.css')}}" rel="stylesheet">
-    <link href="{{asset('jquery-ui-1.9.0.custom.css')}}" rel="stylesheet">
+    <!-- <link href="{{asset('jquery-ui-1.9.0.custom.css')}}" rel="stylesheet"> -->
 
 </head>
 <!-- Page Content -->
@@ -143,11 +143,11 @@
 
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<!-- <script src="{{asset('js/bootstrap.min.js')}}"></script> -->
 <script src="{{asset('js/metisMenu.min.js')}}"></script>
 <script src="{{asset('js/startmin.js')}}"></script>
 <script src="{{asset('js/index.js')}}"></script>
-<script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script>
+<!-- <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script> -->
 <script type="text/javascript">
     $('#chooseFile').change(function() {
         var filename = $('#chooseFile').val();

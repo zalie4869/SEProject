@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
+                    <table class="table table-bordred table-striped table-hover">
                         <thead>
                             <th style="width: 150px;"><center><a id="head1" href="1?sort=IDEmployee&d=ASC" style="color: #333;">หมายเลข</a></center></th>
                             <th style="width: 175px;"><center><a id="head2" href="1?sort=FirstName&d=ASC" style="color: #333;">ชื่อ</a></center></th>
@@ -372,6 +372,7 @@
     }
 
     function clickShow(argument){
+        $("#showForm").show();
         $emp = argument;
     }
 
@@ -382,7 +383,7 @@
     }
 
     function clickDelete(argument){
-        $("#showForm").hide();
+        //$("#showForm").hide();
         //$("#show").modal("hide");
         $emp = argument;
         document.getElementById("DelSure").innerHTML = "<span class=\"glyphicon glyphicon-warning-sign\"></span>&nbsp;&nbsp;&nbsp;คุณต้องการจะลบข้อมูลของ&nbsp;\""+
@@ -392,8 +393,9 @@
 
     $(document).ready(function(){
 
-        $(".clickShow").click(function(){
+        $(".clickShow").on('click','td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6),td:nth-child(7)', function(){
             $('#showForm').find('input, textarea, select').attr('disabled','disabled');
+            
             $("#show").modal("show");
             $("#loadingShow").show();
             $.ajax({

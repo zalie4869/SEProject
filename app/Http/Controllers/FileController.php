@@ -54,7 +54,7 @@ class FileController extends Controller
             $file->name = $request->filename;
             $file->size = $filesize; 
           
-            if(strchr($file->name,".")==".png" || strchr($file->name,".")==".doc" || strchr($file->name,".")==".docx" ||strchr($file->name,".")==".pdf") {
+            if(strchr($file->name,".")==".png" || strchr($file->name,".")==".doc" || strchr($file->name,".")==".docx" || strchr($file->name,".")==".pdf" || strchr($file->name,".")==".xls") {
                 $file->dir = $filedir;
                 $file->save();
                 return back();
