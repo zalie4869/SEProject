@@ -65,14 +65,23 @@
             </tbody>
         </table>
     </div>
+    <div class = "row">
+        <div class = "col-xs-12 col-md-6">
+            <div id = "area-chart" ></div>
+        </div>
+        <div class = "col-xs-12 col-md-6">
+            
+        </div>
+        
+    </div>
+    
+
 </div>
 
-<div class="row" style="">
-    <div class="col-sm-6" ></div>
-    <div class="col-sm-6 " style= "position=absolute;" text-center">
-        <div id="area-chart" ></div>
-    </div>
-</div>
+
+    
+    
+
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

@@ -57,8 +57,9 @@ Route::get('/schedule/getnum',['as'=>'schedule.getnum','uses'=>'ScheduleControll
 
 //--------------Salary---------------//
 Route::get('/salary', ['as' => 'salary.page','uses'=>function () {
-	return redirect('/salary/' . date('Y'));
+	return redirect('/salary/' . date('Y').'?month='.date('m'));
 }]);
+
 Route::get('/salary/{year}', [
     'as' => 'salary.index', 'uses' => 'SalaryController@Index'
 ]);

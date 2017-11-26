@@ -377,11 +377,13 @@
 
     function clickEdit(argument){
         $("#showForm").hide();
+        //$("#show").modal("hide");
         $emp = argument;
     }
 
     function clickDelete(argument){
         $("#showForm").hide();
+        //$("#show").modal("hide");
         $emp = argument;
         document.getElementById("DelSure").innerHTML = "<span class=\"glyphicon glyphicon-warning-sign\"></span>&nbsp;&nbsp;&nbsp;คุณต้องการจะลบข้อมูลของ&nbsp;\""+
         $("#"+$emp+" #FirstName").html()+"&nbsp;"+$("#"+$emp+" #LastName").html()+
