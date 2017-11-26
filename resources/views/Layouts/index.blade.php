@@ -19,18 +19,19 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/circle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/search_input.css') }}">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 </head>
 <body>
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style=" background-color: #5192C4;">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">STORE</a>
+                <a class="navbar-brand" href="{{route('dashboard.index')}}" style="color: #00003D;">หน้าแรก</a>
             </div>
 
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -38,17 +39,18 @@
             </button>
 
             <ul class="nav navbar-right navbar-top-links">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> รวิพล <b class="caret"></b>
+                <li class="dropdown"  >
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: black;">
+                        <i class="fa fa-user fa-fw" style="color: #00003D;"></i> {{ Auth::user()->name }} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> ข้อมูลส่วนตัว</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -59,19 +61,19 @@
                 <div class="sidebar-nav navbar-collapse" style="max-height: none;">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{{route('dashboard.index')}}" class="active"><img src = "{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
+                            <a href="{{route('dashboard.index')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/dashboard.PNG') }}">หน้าแรก</a>
                         </li>
                         <li>
-                            <a href="{{route('employee.page')}}" class="active"><img src="{{ asset('image/people.PNG') }}">ข้อมูลพนักงาน</a>
+                            <a href="{{route('employee.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/people.PNG') }}">ข้อมูลพนักงาน</a>
                         </li>
                         <li>
-                            <a href="{{route('schedule.index')}}" class="active"><img src="{{ asset('image/Employee.PNG') }}">ตารางทำงาน</a>
+                            <a href="{{route('schedule.index')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/Employee.PNG') }}">ตารางทำงาน</a>
                         </li>
                         <li>
-                            <a href="{{route('salary.page')}}" class="active"><img src="{{ asset('image/money.PNG') }}">คำนวณเงินเดือน</a>
+                            <a href="{{route('salary.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/money.PNG') }}">คำนวณเงินเดือน</a>
                         </li>
                         <li>
-                            <a href="{{route('Download.page')}}" class="active"><img src="{{ asset('image/document.PNG') }}">อัพโหลดเอกสาร</a>
+                            <a href="{{route('Download.page')}}" class="active" style="color: #00003D;"><img src="{{ asset('image/document.PNG') }}">อัพโหลดเอกสาร</a>
                         </li>
                     </ul>
                 </div>
@@ -80,11 +82,12 @@
         @yield('content')
     </div>
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/metisMenu.min.js') }}"></script>
-<script src="{{ asset('js/startmin.js') }}"></script>
-<script  src="{{ asset('js/search_input.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('js/startmin.js') }}"></script>
+    <script src="{{ asset('js/search_input.js') }}"></script>
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
 
 </body>
 </html>

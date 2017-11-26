@@ -43,7 +43,7 @@
                       </div>
                     </div>
 
-                     <input type="submit"  value="Upload" class="btn btn-info" style="vertical-align: top;line-height: 25px;">
+                     <input type="submit"  value="Upload" class="btn btn-primary" style="vertical-align: top;line-height: 25px;">
 
                            @if(session('upload1')) 
                              <div class="alert alert-danger">

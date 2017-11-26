@@ -6,13 +6,15 @@ use App\File;
 use Illuminate\Http\Request;
 use DB;
 use Storage;
+use Auth;
 
 class FileController extends Controller
 {
-
-   
-
     public function index($page) {
+
+        if(!Auth::check()){
+            return redirect('/home');
+        }
     
         $limit = 5;
         $files = new File;
@@ -37,6 +39,9 @@ class FileController extends Controller
    
     public function storeFile(request $request)
     {
+        if(!Auth::check()){
+            return redirect('/home');
+        }
         // dd($request->file);
         // dd($request);
 
@@ -66,6 +71,11 @@ class FileController extends Controller
     }
 
    public function download($filename){ 
+
+    if(!Auth::check()){
+        return redirect('/home');
+    }
+
     $pathToFile=public_path()."/public/upload/".$filename;
     return response()->download($pathToFile);           
     }
@@ -73,6 +83,10 @@ class FileController extends Controller
 
     public function delete(request $request)
     {
+        if(!Auth::check()){
+            return redirect('/home');
+        }
+        
         $file = DB::table('files')->where('id',$request->name)->first();
         Storage::delete($file->dir);
         DB::table('files')->where('id',$request->name)->delete();

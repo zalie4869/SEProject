@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('content')
 @include('employee.insert')
+@include('employee.show')
 @include('employee.edit')
 @include('employee.delete')
 
@@ -18,7 +19,6 @@
                         <span class="form-control-clear glyphicon glyphicon-remove form-control-feedback hidden"></span>
                     </div>
                     <span class="input-group-btn">
-                        <!-- <button type="submit" class="btn btn-primary" id="">ค้นหา</button> -->
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
@@ -33,7 +33,6 @@
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
-                            <!-- <th><input type="checkbox" id="checkall" /></th> -->
                             <th style="width: 150px;"><center><a id="head1" href="1?sort=IDEmployee&d=ASC" style="color: #333;">หมายเลข</a></center></th>
                             <th style="width: 175px;"><center><a id="head2" href="1?sort=FirstName&d=ASC" style="color: #333;">ชื่อ</a></center></th>
                             <th style="width: 175px;"><center><a id="head3" href="1?sort=LastName&d=ASC" style="color: #333;">นามสกุล</a></center></th>
@@ -46,8 +45,7 @@
                         </thead>
                         <tbody id="contentBody">
                             @foreach($Employees as $Employee)
-                            <tr id="{{ $Employee->IDEmployee }}">
-                                <!-- <td><input type="checkbox" class="checkthis" /></td> -->
+                            <tr id="{{ $Employee->IDEmployee }}" class="clickShow" onclick="clickShow(id)">
                                 <td><center>{{ $Employee->IDEmployee }}</center></td>
                                 <td><center id="FirstName">{{ $Employee->FirstName }}</center></td>
                                 <td><center id="LastName">{{ $Employee->LastName }}</center></td>
@@ -87,7 +85,7 @@
                                 <td>
                                     <center>
                                         <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" value="{{ $Employee->IDEmployee }}" onclick="clickDelete(value)">
+                                            <button class="btn btn-danger btn-xs clickDelete" data-title="Delete" data-toggle="modal" data-target="#delete" value="{{ $Employee->IDEmployee }}" onclick="clickDelete(value)">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </button>
                                         </p>
@@ -373,12 +371,17 @@
         }
     }
 
+    function clickShow(argument){
+        $emp = argument;
+    }
+
     function clickEdit(argument){
-        //alert(argument);
+        $("#showForm").hide();
         $emp = argument;
     }
 
     function clickDelete(argument){
+        $("#showForm").hide();
         $emp = argument;
         document.getElementById("DelSure").innerHTML = "<span class=\"glyphicon glyphicon-warning-sign\"></span>&nbsp;&nbsp;&nbsp;คุณต้องการจะลบข้อมูลของ&nbsp;\""+
         $("#"+$emp+" #FirstName").html()+"&nbsp;"+$("#"+$emp+" #LastName").html()+
@@ -387,7 +390,150 @@
 
     $(document).ready(function(){
 
+        $(".clickShow").click(function(){
+            $('#showForm').find('input, textarea, select').attr('disabled','disabled');
+            $("#show").modal("show");
+            $("#loadingShow").show();
+            $.ajax({
+                type: 'POST',
+                url: '/employee/getdata',
+                data: {
+                    '_token'    : $('meta[name="csrf-token"]').attr('content'),
+                    'ID'        : $emp
+                },
+                dataType: 'JSON'
+            }).done(function(data){
+                //console.log(data);
+                $("#loadingShow").hide();
+                $('#IDEmployee3').val(data.Employee[0].IDEmployee);
+                $('#NameTitle3').val(data.Employee[0].NameTitle);
+                $('#FirstName3').val(data.Employee[0].FirstName);
+                $('#LastName3').val(data.Employee[0].LastName);
+                $('#NickName3').val(data.Employee[0].NickName);
+                $('#Gender3').val(data.Employee[0].Gender);
+
+                if(data.Employee[0].BloodType === null){
+                    $('#BloodType3').val(null);
+                    $('#OtherBloodType3').hide();
+                }
+                else if(data.Employee[0].BloodType === 'A' ||
+                    data.Employee[0].BloodType === 'AB' ||
+                    data.Employee[0].BloodType === 'B' ||
+                    data.Employee[0].BloodType === 'O'){
+                    $('#OtherBloodType3').hide();
+                    $('#BloodType3').val(data.Employee[0].BloodType);
+                }
+                else{
+                    $('#BloodType3').val('Other');
+                    $('#OtherBloodType3').show();
+                    $('#OtherBloodType3').val(data.Employee[0].BloodType);
+                }
+
+                $('#BirthDate3').val(data.Employee[0].BirthDate);
+                $('#Height3').val(data.Employee[0].Height);
+                $('#Weight3').val(data.Employee[0].Weight);
+                $('#Disease3').val(data.Employee[0].Disease);
+                $('#Position3').val(data.Employee[0].Position);
+                $('#WorkingStatus3').val(data.Employee[0].WorkingStatus);
+                $('#PresentAddress3').val(data.Employee[0].PresentAddress);
+
+                if(data.Employee[0].Residence === null){
+                    $('#Residence3').val(null);
+                    $('#OtherResidenceBox3').hide();
+                }
+                else if(data.Employee[0].Residence === 'OwnHouse' ||
+                    data.Employee[0].Residence === 'RentHouse' ||
+                    data.Employee[0].Residence === 'BoardingHouse' ||
+                    data.Employee[0].Residence === 'StudentHousing'){
+                    $('#OtherResidenceBox3').hide();
+                    $('#Residence3').val(data.Employee[0].Residence);
+                }
+                else{
+                    $('#Residence3').val('Other');
+                    $('#OtherResidenceBox3').show();
+                    $('#OtherResidenceBox3').val(data.Employee[0].Residence);
+                }
+
+                $('#Phone3').val(data.Employee[0].Phone);
+                $('#E-mail3').val(data.Employee[0].Email);
+                $('#IDCardNo3').val(data.Employee[0].IDCardNo);
+                $('#IssueDATE3').val(data.Employee[0].IssueDATE);
+                $('#ExpireDATE3').val(data.Employee[0].ExpireDATE);
+                $('#Nationality3').val(data.Employee[0].Nationality);
+                $('#Race3').val(data.Employee[0].Race);
+                $('#IDCardAddress3').val(data.Employee[0].IDCardAddress);
+
+                $('#NamePrimary3').val(data.Employee[0].NamePrimary);
+                $('#LocatPrimary3').val(data.Employee[0].LocatPrimary);
+                $('#GPA_Primary3').val(data.Employee[0].GPA_Primary);
+
+                $('#NamSecondary3').val(data.Employee[0].NamSecondary);
+                $('#LocatSecondary3').val(data.Employee[0].LocatSecondary);
+                $('#GPA_Secondary3').val(data.Employee[0].GPA_Secondary);
+
+                $('#NamHigh3').val(data.Employee[0].NamHigh);
+                $('#LocatHigh3').val(data.Employee[0].LocatHigh);
+                $('#Major_High3').val(data.Employee[0].Major_High);
+                $('#GPA_High3').val(data.Employee[0].GPA_High);
+
+                $('#NamVocational3').val(data.Employee[0].NamVocational);
+                $('#LocatVocational3').val(data.Employee[0].LocatVocational);
+                $('#Major_Vocational3').val(data.Employee[0].Major_Vocational);
+                $('#GPA_Vocational3').val(data.Employee[0].GPA_Vocational);
+
+                $('#NamUniversity3').val(data.Employee[0].NamUniversity);
+                $('#LocatUniversity3').val(data.Employee[0].LocatUniversity);
+                $('#Major_University3').val(data.Employee[0].Major_University);
+                $('#GPA_University3').val(data.Employee[0].GPA_University);
+
+                $('#NamOther3').val(data.Employee[0].NamOther);
+                $('#LocatOther3').val(data.Employee[0].LocatOther);
+                $('#Major_Other3').val(data.Employee[0].Major_Other);
+                $('#GPA_Other3').val(data.Employee[0].GPA_Other);
+
+                $('#FatherFirstName3').val(data.Employee[0].FatherFirstName);
+                $('#FatherLastName3').val(data.Employee[0].FatherLastName);
+                $('#FatherAddress3').val(data.Employee[0].FatherAddress);
+                $('#FatherPhone3').val(data.Employee[0].FatherPhone);
+
+                $('#MotherFirstName3').val(data.Employee[0].MotherFirstName);
+                $('#MotherLastName3').val(data.Employee[0].MotherLastName);
+                $('#MotherAddress3').val(data.Employee[0].MotherAddress);
+                $('#MotherPhone3').val(data.Employee[0].MotherPhone);
+
+                $('#MaritalStatus3').val(data.Employee[0].MaritalStatus);
+                if(data.Employee[0].MaritalStatus === 'Single'){
+                    changeMaritalStatus2();
+                }
+
+                $('#SpouseFirstName3').val(data.Employee[0].SpouseFirstName);
+                $('#SpouseLastName3').val(data.Employee[0].SpouseLastName);
+                $('#SpouseAddress3').val(data.Employee[0].SpouseAddress);
+                $('#SpousePhone3').val(data.Employee[0].SpousePhone);
+                
+                $('#PersonFirstName3').val(data.Employee[0].PersonFirstName);
+                $('#PersonLastName3').val(data.Employee[0].PersonLastName);
+                $('#PersonAddress3').val(data.Employee[0].PersonAddress);
+                $('#PersonPhone3').val(data.Employee[0].PersonPhone);
+
+                $('#GuarantorFirstName3').val(data.Employee[0].GuarantorFirstName);
+                $('#GuarantorLastName3').val(data.Employee[0].GuarantorLastName);
+                $('#GuarantorAddress3').val(data.Employee[0].GuarantorAddress);
+                $('#GuarantorPhone3').val(data.Employee[0].GuarantorPhone);
+
+                $('#CompanyName3').val(data.Employee[0].CompanyName);
+                $('#WorkingExAddress3').val(data.Employee[0].WorkingExAddress);
+                $('#WorkingExPosition3').val(data.Employee[0].WorkingExPosition);
+                $('#WorkingExPhone3').val(data.Employee[0].WorkingExPhone);
+                $('#ReasonForLearing3').val(data.Employee[0].ReasonForLearing);
+
+            }).fail(function(e){
+                console.log("Error");
+            });
+        });
+
         $(".clickEdit").click(function(){
+            
             $("#loadingEdit").show();
             $.ajax({
                 type: 'POST',

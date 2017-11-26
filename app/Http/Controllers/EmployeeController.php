@@ -10,13 +10,18 @@ use App\Family;
 use App\Guarantor;
 use App\PersonNotify;
 use App\WorkExperience;
+use Auth;
 
 class EmployeeController extends Controller
 {
     public $limit = 6;
 
     public function Index(Request $request, $page){
-      //dd($request);
+
+      if(!Auth::check()){
+        return redirect('/home');
+      }
+
       $start = 0;
       $limit = $this->limit;
       $Employees = new Employee;
@@ -123,7 +128,10 @@ class EmployeeController extends Controller
     }
 
     public function GetData(Request $request){
-    //dd($request->all() );
+      
+      if(!Auth::check()){
+        return redirect('/home');
+      }
 
       $Employee = Employee::join('IDCard','IDCard.CardID','=','Employee.CardID')
                   ->join('Education','Education.EducationID','=','Employee.EducationID')
@@ -138,7 +146,10 @@ class EmployeeController extends Controller
     }
 
     public function Edit(Request $request){
-		  //dd($request->all());
+		  
+      if(!Auth::check()){
+        return redirect('/home');
+      }
       
       $Employee = Employee::where('IDEmployee','=',$request->ID)->first();
       $IDCard = IDCard::where('CardID','=',$Employee->CardID)->first();
@@ -260,7 +271,10 @@ class EmployeeController extends Controller
     }
 
     public function Insert(Request $request){
-      //dd($request->all());
+      
+      if(!Auth::check()){
+        return redirect('/home');
+      }
 
       $nEmployee = Employee::where('IDEmployee','=',$request->data['IDEmployee'])->get()->count();
       if($nEmployee){
@@ -385,6 +399,10 @@ class EmployeeController extends Controller
 
     public function Destroy(Request $request){
 
+      if(!Auth::check()){
+        return redirect('/home');
+      }
+
       $employee = Employee::where('IDEmployee','=',$request->ID)->first();
       $IDCard = IDCard::where('CardID','=',$employee->CardID)->first();
       $Education = Education::where('EducationID','=',$employee->EducationID)->first();
@@ -400,44 +418,8 @@ class EmployeeController extends Controller
       $Guarantor->delete();
       $PersonNotify->delete();
       $WorkExperience->delete();
-
-      // $limit = $this->limit;
-      // $sort = $request->sort;
-      // $d = $request->d;
-      // $content = 0;
-
-      // if($sort == null){
-      //   $sort = 'IDEmployee';
-      // }
-      // if($d == null){
-      //   $d = 'ASC';
-      // }
-
-      // $Employees = new Employee;
-
-      // if($request->page == $request->lastPage){
-      //   $content = 0;
-      // }
-      // else{
-      //   $content = 1;
-      //   if($request->search != null){
-      //     $Employees = $Employees->where('IDEmployee', 'LIKE', '%' . $request->search . '%')
-      //                 ->orWhere('FirstName', 'LIKE', '%' . $request->search . '%')
-      //                 ->orWhere('LastName', 'LIKE', '%' . $request->search . '%');
-      //   }
-      //   $Employees = $Employees->orderBy($sort,$d)->offset(($request->page*$limit)-1)->limit(1)->get();
-      // }
-
-      return response()->json();
       
-      // return response()->json(['success' => 'Record has been deleted successfully!',
-      //                         'content'  => $content,
-      //                         'Employees'=> $Employees,
-      //                         'sort'     => $sort,
-      //                         'd'        => $d,
-      //                         'search'   => $request->search,
-      //                         'page'     => $request->page,
-      //                         'lastPage' => $request->lastPage]);
+      return response()->json();
     }
 
 }

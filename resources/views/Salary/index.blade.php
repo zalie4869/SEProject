@@ -10,7 +10,7 @@
     <link href="{{asset('css/DMY.css')}}" rel="stylesheet">
     <link href="{{asset('css/button.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/timeline.css')}}" rel="stylesheet">
@@ -22,54 +22,82 @@
 
 <!-- Page Content -->
 <div id="page-wrapper" style="border-color: black">
-    <h1 class="page-header" style="display: inline-block;">คำนวณเงินเดือน</h1>
-    <button class="button_1" data-toggle="modal" data-target="#Modal">คำนวณเงินเดือน</button>
-    <div class="pagination   btn-group btn-group-justified" >
-            <a href="" class="btn btn-primary" Id="Year_Prev" style="padding:5px;font-size: 20px"><<</a>
-            <a href="" class="btn btn-primary" Id="Year1" style="font-size: 20px"></a>
-            <a href="" class="btn btn-primary" Id="Year2" style="font-size: 20px"></a>
-            <a href="" class="btn btn-primary active" Id="Year3" style="font-size: 20px"></a>
-            <a href="" class="btn btn-primary" Id="Year4" style="font-size: 20px"></a>
-            <a href="" class="btn btn-primary" Id="Year5" style="font-size: 20px"></a>
-            <a href="" class="btn btn-primary" Id="Year_Next">>></a> 
-    </div> 
-    <div class="btn-group-justified" >
-          <div class="pagination   btn-group btn-group-justified"  >
-                <a href="#" class="btn btn-primary " Id="Month1"  >มกราคม</a> 
-                <a href="#" class="btn btn-primary" Id="Month2" >กุมภาพันธ์ </a>
-                <a href="#" class="btn btn-primary" Id="Month3" >มีนาคม</a>
-                <a href="#" class="btn btn-primary" Id="Month4" >เมษายน </a>
-                <a href="#" class="btn btn-primary" Id="Month5" >พฤษภาคม </a>
-                <a href="#" class="btn btn-primary" Id="Month6" >มิถุนายน </a>
-                <a href="#" class="btn btn-primary" Id="Month7" >กรกฎาคม</a>
-                <a href="#" class="btn btn-primary" Id="Month8" >สิงหาคม</a>
-                <a href="#" class="btn btn-primary" Id="Month9" >กันยายน</a>
-                <a href="#" class="btn btn-primary" Id="Month10" >ตุลาคม</a>
-                <a href="#" class="btn btn-primary" Id="Month11" >พฤศจิกายน </a>
-                <a href="#" class="btn btn-primary" Id="Month12" >ธันวาคม</a>
- 
+    
+    <div class = "row">
+        <div class = "col-xs-7 col-ms-8 col-md-8">
+            <h1 class="page-header" >คำนวณเงินเดือน</h1>
+        </div>
+        <!-- <div class="col-xs-2"></div> -->
+        <div class = "col-xs-5 col-ms-3 col-md-3">
+            <button class=" page-header button_1" data-toggle="modal" data-target="#insert" >คำนวณเงินเดือน</button>
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <div class = "row">
+            <div class = "col-xs-12 col-sm-5" style = "margin-bottom : 15px;">
+                <div class = "col-xs-4 col-sm-3" style = "text-align :center;">
+                    <label for="sel1">ปี</label>
+                </div>
+                <div class = "col-xs-8 col-sm-9">
+                    <select class="form-control" Id="Year" >
+                        <!-- <option>โปรดเลือก</option> -->
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "col-xs-12 col-sm-5">
+                <div class = "col-xs-4 col-sm-4" style = "text-align : center;">
+                    <label for="sel1">เดือน</label>
+                </div>
+                <div class = "col-xs-8 col-sm-8" >
+                    <select class="form-control" id="Month">
+                        <option value="1" >มกราคม</option>
+                        <option value="2">กุมภาพันธ์</option>
+                        <option value="3">มีนาคม</option>
+                        <option value="4">เมษายน</option>
+                        <option value="5">พฤษภาคม</option>
+                        <option value="6">มิถุนายน</option>
+                        <option value="7">กรกฎาคม</option>
+                        <option value="8">สิงหาคม</option>
+                        <option value="9">กันยายน</option>
+                        <option value="10">ตุลาคม</option>
+                        <option value="11" value="พฤศจิกายน">พฤศจิกายน</option>
+                        <option value="12">ธันวาคม</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-1 ">
+                <div class="col-xs-8"></div>
+                <div class="col-xs-4 col-sm-4 ">
+                    <a href=" " type="button" class="btn btn-primary" id="YearMonth" onclick="Year_Month(document.getElementById('Year').value,document.getElementById('Month').value)">ค้นหา</a>    
+                </div>
+                
+
             </div>
         </div>
-            <!-- <div class="row" > -->
-            <!-- <div class="container" style="width: 100%">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
-                        <thead>
-                            
-                            <th style="width: 150px;"><center><a id="head1" href="1?sort=IDEmployee&d=ASC" style="color: #333;">รหัสพนักงาน</a></center></th>
-                            <th style="width: 175px;"><center><a id="head2" href="1?sort=FirstName&d=ASC" style="color: #333;">ชื่อ</a></center></th>
-                            <th style="width: 175px;"><center><a id="head3" href="1?sort=LastName&d=ASC" style="color: #333;">นามสกุล</a></center></th>
-                            <th style="width: 200px;"><center><a id="head4" href="1?sort=Position&d=ASC" style="color: #333;">ตำแหน่ง</a></center></th>
-                            <th style="width: 300px;"><center><a id="head5" href="1?sort=WorkingStatus&d=ASC" style="color: #333;">เงินเดือนที่ได้</a></center></th>
-                            <th style="width: 50px;"><center>แก้ไข</center></th>
-                            <th style="width: 50px;"><center>ลบ</center></th>
-                        </thead>     -->
-                
-                <br><div  style="float: center; ">
+      
+    </div>
+
+                <br><div  style="float: center; " >
                     <div class="table-responsive" Id = 'msg'>
-                         <table id="mytable" class="table table-bordred table-striped btn-group-justified">
+                         <table id="mytable" class="table table-bordred table-striped">
                                    
                                 <thead>
                                    <th >รหัสพนักงาน</th>
@@ -85,12 +113,12 @@
                     <tbody>
                     
                      @foreach($Employees as $Employee)                   
-                    <tr id="{{$Employee->SalaryID}}" >
-                        <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->EmpID}}</td>
-                        <td id="FirstName1">{{$Employee->FirstName}}</td>
-                        <td id="LastName1">{{$Employee->LastName}}</td>
-                        <td>{{$Employee->Position}}</td>
-                        <td>{{$Employee->Sum}}</td>
+                    <tr id="{{$Employee->SalaryID}}">
+                        <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->EmpID}}</td>
+                        <td id="FirstName1" data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->FirstName}}</td>
+                        <td id="LastName1"  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->LastName}}</td>
+                        <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->Position}}</td>
+                        <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->Sum}}</td>
                         <td>
                                 <p data-placement="top" data-toggle="tooltip" title="Edit">
                                     <button class="btn btn-primary btn-xs press-edit" data-title="Edit" data-toggle="modal" data-target="#edit" Onclick="Edit_Value({{$Employee}})" >
@@ -117,114 +145,189 @@
 
         </div>
 <!-- insert -->
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-  <div class="modal-content" style="width: 650px;" >
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <center><h3 class="modal-title custom_align"  id="Heading">คำนวณเงินเดือนพนักงาน</h3></center>
-      </div>
-      <form method="post" action="{{ route('salary.insert') }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-           <div class="modal-body" style="max-height: 70vh; overflow:auto;">
-
-        <div class="form-group">
-                <center><label >โปรดเลือกวันที่ต้องการคำนวณเงิน</label></center>
-                <input class="form-control" type="date" name="Montyear" style="width: 100%" Id="Montyear" >
-        </div>
-
-        <label>รหัสพนักงาน</label>
-        <div class="form-group">
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0 " name="EmpID" id="EmpID" onchange="On_TYPE()">
-                <option selected hidden value>โปรดเลือก</option>
-                @foreach($Employees1 as $Employee)
-                    <option value="{{$Employee->EmpID}}" >{{$Employee->EmpID}}</option>
-                @endforeach
-            </select>            
-        </div>
+<div class = "modal" id = "insert" role = "dialog" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true"  >
+    <div class = "modal-dialog">
+        <div class="modal-content">
+            <div class = "modal-header">
+                <h3 class = "modal-title custom_align" style = "display : inline">เงินเดือนพนักงาน</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style = "display : inline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+            <form method = "post" action="{{ route('salary.insert') }}" onsubmit="return Submit()">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class = "modal-body">
 
 
-        <label>คำนำหน้าชื่อ</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="NameTitle" id="NameTitle" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="Mr" >นาย</option>
-        <option value="Ms">นาง</option>
-        <option value="Miss">นางสาว</option>
-        </select>
-        </div>
+                    <div class = "row rowbottom" >
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-5" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">รหัสพนักงาน</p>
+                            </div>
+                            
+                            <div class = "col-xs-7 paddingleft " >
+                                    <select class="form-control " name="EmpID" id="EmpID" onchange="On_TYPE()"  >
+                                        <option selected hidden value>โปรดเลือก</option>
+                                        @foreach($Employees1 as $Employee)
+                                            <option value="{{$Employee->EmpID}}" >{{$Employee->EmpID}}</option>
+                                        @endforeach
+                                    </select> 
+                                    <span style="color: red;" id="fo1"></span>
+                            </div>
+                        </div>
 
-        <label>ชื่อ</label>
-        <div class="form-group">
-        <input class="form-control " Id="FirstName" type="text"  style="width: 100%;" readonly="readonly">
-        </div>
 
-        <label>นามสกุล</label>
-        <div class="form-group">
-        <input class="form-control " type="text" style="width: 100%;" Id="LastName" readonly="readonly">
-        </div>
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-4" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
+                            </div>
+                            <div class = "col-xs-8 paddingleft">
+                                
+                                <input class="form-control" type="text" id = "Position" readonly style = "text-align : center;">
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
 
-        <label>ตำแหน่ง</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="NameTitle" id="Position" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="BranchManager">ผู้จัดการร้าน</option>
-        <option value="AssistantManager">ผู้ช่วยผู้จัดการ</option>
-        <option value="StaffFull-Time">พนักงานประจำ</option>
-        <option value="StaffPart-time">พนักงานPart-Time</option>
-        </select>
-        </div>
-            
-         <label>เงินเดือนประจำ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Salary" Id="Salary" style="width: 100%"  onchange="On_Sum()" >
-        </div>
 
-        <label>ขาดงาน</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Absence" Id="Absence" style="width: 100%" onchange="On_Sum()" >
-        </div>
 
-        <label>มาสาย</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Late" Id="Late" style="width: 100%" onchange="On_Sum()" >
-        </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-4 paddingleft">
+                                <input class="form-control " type="text" id = "NameTitle" readonly>
+                            </div>
+                            <div class = "col-xs-8" style = "padding-left : 0">
+                                
+                                <input class="form-control " type="text" id = "NameShow" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
+                    </div>
 
-        <label>OT</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="OT" Id="OT" style="width: 100%" onchange="On_Sum()" >
-        </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-5">
+                                <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                            </div>
+                            <div class = "col-xs-7" style = "padding-left : 0;">
+                                <input class="form-control " type="date" name="Montyear" id = "Montyear">
+                            </div>
+                        </div>
+                    </div>
 
-        <label>ประกันสังคม</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="SocialSecurity" Id="SocialSecurity" style="width: 100%" onchange="On_Sum()">
-        </div>
+                    <hr style = "border-top: 3px double #8c8b8b;">
 
-        <label>โบนัสพิเศษ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Bonus" Id="Bonus" style="width: 100%" onchange="On_Sum()">
-        </div>
 
-        <label>หักเงินรายจ่ายอื่นๆ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="CutWages" Id="CutWages" style="width: 100%" onchange="On_Sum()">
-        </div>
 
-         <label>รวมยอดเงินที่ได้</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Sum" Id="Sum" style="width: 100%;"; disabled>
-        </div>
 
-    
-      </div>
-          <div class="modal-footer ">
-        <button  type="submit" class="btn btn-warning btn-lg" id="insertButton" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>เสร็จสิ้น</button>
-        </form> 
-      </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'> 
+                                <span style="color: red;" id="fo2"></span>
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                
+                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)'>
+                                <span style="color: red;" id="fo3"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>  
+                                <span style="color: red;" id="fo4"></span> 
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">OT</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>
+                                <span style="color: red;" id="fo5"></span> 
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo6"></span> 
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' >
+                                <span style="color: red;" id="fo7"></span> 
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo8"></span> 
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; border-bottom : 2px solid red;">รวมยอดเงินที่ได้</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number" id = "Sum" name = "Sum" style = "text-align : center;" readonly >
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12">
+                            <button  type="submit" class="btn btn-warning btn-lg"  id="insertButton" style="width: 100%;" Onclick="setColor()"><span class="glyphicon glyphicon-ok-sign"></span>เสร็จสิ้น</button>   
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
         </div>
     </div>
-</div>     
-</div> 
+</div>
+
 
 
 <!-- Delete -->
@@ -264,276 +367,371 @@
 </div>
 
 <!-- edit -->
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-  <div class="modal-content" style="width: 650px;" >
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <center><h3 class="modal-title custom_align"  id="Heading">แก้ไขเงินเดือนพนักงาน</h3></center>
-      </div>
-      <form method="post" action="{{ route('salary.edit') }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="modal-body" style="max-height: 70vh; overflow:auto;">
-
-        <center><div class="form-group">
-                <label >วันที่คำนวณเงินเดือน</label>
-                <input class="form-control" type="date" name="Montyear1"  Id="Montyear1" >
-        </div></center>
-
-        <label>รหัสพนักงาน</label>
-        <div class="form-group">
-            <input class="form-control " name="EmpID1" Id="EmpID1" type="text"  style="width: 100%;" readonly="readonly">       
-        </div>
-
-<!--         <label>รหัสพนักงาน</label>
-        <div class="form-group">
-       <input class="form-control" name="EmpID" Id="EmpID" type="text" style="width: 200px;" onchange="On_TYPE()" >
-        </div>
- -->
-        <label>คำนำหน้าชื่อ</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="NameTitle" id="NameTitle1" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="Mr" >นาย</option>
-        <option value="Ms">นาง</option>
-        <option value="Miss">นางสาว</option>
-        </select>
-        </div>
-
-        <label>ชื่อ</label>
-        <div class="form-group">
-        <input class="form-control " Id="FirstName2" type="text"  style="width: 100%;" readonly="readonly">
-        </div>
-
-        <label>นามสกุล</label>
-        <div class="form-group">
-        <input class="form-control " type="text" style="width: 100%;" Id="LastName2" readonly="readonly">
-        </div>
-
-        <label>ตำแหน่ง</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Position" id="Position1" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="BranchManager">ผู้จัดการร้าน</option>
-        <option value="AssistantManager">ผู้ช่วยผู้จัดการ</option>
-        <option value="StaffFull-Time">พนักงานประจำ</option>
-        <option value="StaffPart-time">พนักงานPart-Time</option>
-        </select>
-        </div>
-        
-         <label>เงินเดือนประจำ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Salary1" Id="Salary1" style="width: 100%;"  Onchange="On_Sum1()" >
-        </div>
-
-        <label>ขาดงาน</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Absence1" Id="Absence1" style="width: 100%;" Onchange="On_Sum1()" >
-        </div>
-
-        <label>มาสาย</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Late1" Id="Late1" style="width: 300px;" Onchange="On_Sum1()" >
-        </div>
-
-        <label>OT</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="OT1" Id="OT1" style="width: 100%;" Onchange="On_Sum1()" >
-        </div>
-
-        <label>ประกันสังคม</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="SocialSecurity1" Id="SocialSecurity1" style="width: 100%;" Onchange="On_Sum1()">
-        </div>
-
-        <label>โบนัสพิเศษ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Bonus1" Id="Bonus1" style="width: 100%;" Onchange="On_Sum1()">
-        </div>
-
-        <label>หักเงินรายจ่ายอื่นๆ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="CutWages1" Id="CutWages1" style="width: 100%;" Onchange="On_Sum1()">
-        </div>
-
-         <label>รวมยอดเงินที่ได้</label>
-        <div class="form-group">
-        <input class="form-control " type="number" name="Sum1" Id="Sum1" style="width: 100%;" >
-        </div>
-
-    
-      </div>
-          <div class="modal-footer ">
-        <button  type="submit" class="btn btn-warning btn-lg" id="editButton" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>เสร็จสิ้น</button>
-        </form> 
-      </div>
-        </div>
-    </div>
-สิ้นสุดการสนทนาผ่านแชท
-พิมพ์ข้อความ...
-    </div>     
-
-
-</div> 
-
-<!-- show -->
-    <div class="modal fade" id="show" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true">
-      <div class="modal-dialog">
-  <div class="modal-content" style="width: 750px;" >
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <center><h3 class="modal-title custom_align"  id="Heading">เงินเดือนพนักงาน</h3></center>
-      </div>
-      <form method="post" >
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="modal-body" >
-        <label>รหัสพนักงาน</label>
-        <div class="form-group">
-            <input class="form-control active"  Id="EmpID2" type="text"  style="width: 300px;" readonly="readonly">       
-        </div>
-
-<!--         <label>รหัสพนักงาน</label>
-        <div class="form-group">
-       <input class="form-control" name="EmpID" Id="EmpID" type="text" style="width: 200px;" onchange="On_TYPE()" >
-        </div>
- -->
-        <label>คำนำหน้าชื่อ</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0 active" id="NameTitle2" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="Mr" >นาย</option>
-        <option value="Ms">นาง</option>
-        <option value="Miss">นางสาว</option>
-        </select>
-        </div>
-
-        <label>ชื่อ</label>
-        <div class="form-group">
-        <input class="form-control active" Id="FirstName3" type="text"  style="width: 300px;" readonly="readonly">
-        </div>
-
-        <label>นามสกุล</label>
-        <div class="form-group">
-        <input class="form-control active" type="text" style="width: 300px;" Id="LastName3" readonly="readonly">
-        </div>
-
-        <label>ตำแหน่ง</label>
-        <div class="form-group">
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0 active"  id="Position2" disabled="true">
-        <option selected hidden value>โปรดเลือก</option>
-        <option value="BranchManager">ผู้จัดการร้าน</option>
-        <option value="AssistantManager">ผู้ช่วยผู้จัดการ</option>
-        <option value="StaffFull-Time">พนักงานประจำ</option>
-        <option value="StaffPart-time">พนักงาน Part-Time</option>
-        </select>
-        </div>
-            <div class="form-group ">
-                <label >วัน/เดือน/ปี</label>
-                <input class="form-control " type="date"  Id="Montyear2" disabled>
+<div class = "modal" id = "edit" role = "dialog" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true">
+    <div class = "modal-dialog">
+        <div class="modal-content">
+            <div class = "modal-header">
+                <h3 class = "modal-title custom_align" style = "display : inline">เงินเดือนพนักงาน</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style = "display : inline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
             </div>
-         <label>เงินเดือนประจำ</label>
-        <div class="form-group ">
-        <input class="form-control  " type="number" Id="Salary2" style="width: 300px;" disabled >
-        </div>
+            <form method = "post" action="{{ route('salary.edit') }}" onsubmit="return Submit1()">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class = "modal-body">
 
-        <label>ขาดงาน</label>
-        <div class="form-group">
-        <input class="form-control " type="number" Id="Absence2" style="width: 300px;"  disabled>
-        </div>
 
-        <label>มาสาย</label>
-        <div class="form-group">
-        <input class="form-control " type="number" Id="Late2" style="width: 300px;"  disabled>
-        </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-5" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">รหัสพนักงาน</p>
+                            </div>
+                            
+                            <div class = "col-xs-7 paddingleft">
+                                <input class="form-control " name="EmpID1" Id="EmpID1" type="text"  style="width: 100%;" readonly>  
+                            </div>
+                        </div>
 
-        <label>OT</label>
-        <div class="form-group">
-        <input class="form-control" type="number" Id="OT2" style="width: 300px;"  disabled>
-        </div>
 
-        <label>ประกันสังคม</label>
-        <div class="form-group">
-        <input class="form-control " type="number"  Id="SocialSecurity2" style="width: 300px;" disabled>
-        </div>
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-4" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
+                            </div>
+                            <div class = "col-xs-8 paddingleft">
+                                
+                                <input class="form-control " type="text" id = "Position1" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
+                    </div>
 
-        <label>โบนัสพิเศษ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" Id="Bonus2" style="width: 300px;" disabled>
-        </div>
 
-        <label>หักเงินรายจ่ายอื่นๆ</label>
-        <div class="form-group">
-        <input class="form-control " type="number" Id="CutWages2" style="width: 300px;" disabled >
-        </div>
 
-         <label>รวมยอดเงินที่ได้</label>
-        <div class="form-group">
-            <input class="form-control " type="number" Id="Sum2" style="width: 300px"; disabled>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-4 paddingleft">
+                                <input class="form-control " type="text"  id="NameTitle1" id = "NameTitle" readonly>
+                            </div>
+                            <div class = "col-xs-8" style = "padding-left : 0">
+                                
+                                <input class="form-control " type="text" id = "NameShow2" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-5">
+                                <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                            </div>
+                            <div class = "col-xs-7" style = "padding-left : 0;">
+                                <input class="form-control" type="date"  name="Montyear1" Id="Montyear1" readonly >
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style = "border-top: 3px double #8c8b8b;">
+
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="Salary1" name="Salary1"  style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo_2"></span>
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                
+                                <input class="form-control " type="number" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1()"onkeypress='validate(event)'>
+                                <span style="color: red;" id="fo_3"></span>    
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="Late1" name="Late1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo_4"></span>
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">OT</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number" id = "OT1" name="OT1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>
+                                <span style="color: red;" id="fo_5"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="SocialSecurity1" name="SocialSecurity1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo_6"></span>
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number"  id = "Bonus1" name = "Bonus1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' >
+                                <span style="color: red;" id="fo_7"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control "  type="number" id="CutWages1" name="CutWages1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                <span style="color: red;" id="fo_8"></span>
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; border-bottom : 2px solid red;">รวมยอดเงินที่ได้</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control " type="number"  id = "Sum1" name = "Sum1" style = "text-align : center;" readonly >
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12">
+                            <button  type="submit" class="btn btn-warning btn-lg" id="editButton" style="width: 100%;" Onclick="setColor1()"><span class="glyphicon glyphicon-ok-sign"></span>เสร็จสิ้น</button>   
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
         </div>
     </div>
-    </div>     
+</div>
+ 
+<!-- show -->
+
+<div class = "modal" id = "show" role = "dialog" tabindex="-1" role="dialog" ria-labelledby="modal" aria-hidden="true">
+    <div class = "modal-dialog">
+        <div class="modal-content">
+            <div class = "modal-header">
+                <h3 class = "modal-title custom_align" style = "display : inline">เงินเดือนพนักงาน</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style = "display : inline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+            <form method = "post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class = "modal-body">
 
 
-</div> 
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">รหัสพนักงาน</p>
+                            </div>
+                            <div class = "col-xs-6 paddingleft">
+                                
+                                <input class="form-control active"  type="text" id="EmpID2" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
 
-</div> 
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-4" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
+                            </div>
+                            <div class = "col-xs-8 paddingleft">
+                                
+                                <input class="form-control active" type="text" id = "Position2" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-4 paddingleft">
+                                <input class="form-control active" type="text" id = "NameTitle2" readonly>
+                            </div>
+                            <div class = "col-xs-8" style = "padding-left : 0">
+                                
+                                <input class="form-control active" type="text" id = "NameShow1" readonly style = "text-align : center;">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12" style = "line-height : 34px;">
+                            <div class = "col-xs-5">
+                                <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                            </div>
+                            <div class = "col-xs-7" style = "padding-left : 0;">
+                                <input class="form-control active" type="date" id = "Montyear2" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style = "border-top: 3px double #8c8b8b;">
+
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active"  type="text" id="Salary2" style = "text-align : center;" readonly>   
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                
+                                <input class="form-control active" type="text" id = "Absence2" style = "text-align : center;" readonly>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active"  type="text" id="Late2" style = "text-align : center;" readonly>   
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">OT</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active" type="text" id = "OT2" style = "text-align : center;" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active"  type="text" id="SocialSecurity2" style = "text-align : center;" readonly>   
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active" type="text" id = "Bonus2" style = "text-align : center;" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class = "row rowbottom">
+                        <div class = "col-xs-12 col-sm-6 marginbottom">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active"  type="text" id="CutWages2" style = "text-align : center;" readonly>   
+                            </div>
+                        </div>
+
+
+                        <div class = "col-xs-12 col-sm-6">
+                            <div class = "col-xs-6" style = "line-height : 34px;">
+                                <p class = "center" style = "margin : 0; border-bottom : 2px solid red;">รวมยอดเงินที่ได้</p>
+                            </div>
+                            <div class = "col-xs-6"  style = "padding-left : 0;">
+                                <input class="form-control active" type="text" id = "Sum2" style = "text-align : center;" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+</div>
 
 
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
 <!-- Metis Menu Plugin JavaScript -->
 <script src="{{asset('js/metisMenu.min.js')}}"></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('js/startmin.js')}}"></script>
-
 <script src="{{asset('js/dmy.js')}}"></script>
 
 <script type="text/javascript">
-    $emp = ' ';
-    @if($month_Num == 1){
-        document.getElementById("Month1").className = 'btn btn-primary active'
+    $emp = '';
+    document.getElementById('Year').value = {{$year}};
+    document.getElementById('Month').value = {{$month_Num}};
+    function Year_Month(argument,argument1) {
+        document.getElementById('YearMonth').href = "/salary/"+argument+"?month="+argument1;
+        $year=argument;
+        $month_Num = argument1;
     }
-    @elseif($month_Num == 2){
-        document.getElementById("Month2").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 3){
-        document.getElementById("Month3").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 4){
-        document.getElementById("Month4").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 5){
-        document.getElementById("Month5").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 6){
-        document.getElementById("Month6").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 7){
-        document.getElementById("Month7").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 8){
-        document.getElementById("Month8").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 9){
-        document.getElementById("Month9").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 10){
-        document.getElementById("Month10").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 11){
-        document.getElementById("Month11").className = 'btn btn-primary active'
-    }
-    @elseif($month_Num == 12){
-        document.getElementById("Month12").className = 'btn btn-primary active'
-    }
-
-    @endif
-
 
     function On_Salary(argument) {
         $emp = argument;
@@ -546,75 +744,26 @@
         echo "var array_code =".$js_array.";\n";
     ?>
 
-    document.getElementById('Year1').innerHTML = {{$year-2}};
-    document.getElementById('Year2').innerHTML = {{$year-1}};
-    document.getElementById('Year3').innerHTML = {{$year}};
-    document.getElementById('Year4').innerHTML = {{$year+1}};
-    document.getElementById('Year5').innerHTML = {{$year+2}};
-
-    document.getElementById('Year1').href = {{$year-2}};
-    document.getElementById('Year2').href = {{$year-1}};
-    document.getElementById('Year3').href = {{$year}};
-    document.getElementById('Year4').href = {{$year+1}};
-    document.getElementById('Year5').href = {{$year+2}};
-
-    document.getElementById('Year_Prev').href = {{$year-1}};
-    document.getElementById('Year_Next').href = {{$year+1}};
-
-    document.getElementById('Month1').href = {{$year}}+"?month=1";  
-    document.getElementById('Month2').href = {{$year}}+"?month=2"; 
-    document.getElementById('Month3').href = {{$year}}+"?month=3"; 
-    document.getElementById('Month4').href = {{$year}}+"?month=4"; 
-    document.getElementById('Month5').href = {{$year}}+"?month=5"; 
-    document.getElementById('Month6').href = {{$year}}+"?month=6"; 
-    document.getElementById('Month7').href = {{$year}}+"?month=7"; 
-    document.getElementById('Month8').href = {{$year}}+"?month=8"; 
-    document.getElementById('Month9').href = {{$year}}+"?month=9"; 
-    document.getElementById('Month10').href = {{$year}}+"?month=10"; 
-    document.getElementById('Month11').href = {{$year}}+"?month=11"; 
-    document.getElementById('Month12').href = {{$year}}+"?month=12"; 
-
     function On_TYPE() {
-
+ 
         for(var j=0;j<array_code.length;j++){
             if(document.getElementById('EmpID').value == array_code[j].EmpID  ){
                 document.getElementById('NameTitle').value= array_code[j].NameTitle;
-                //alert(array_code[j].NameTitle);  
-                document.getElementById('FirstName').value= array_code[j].FirstName;
-                document.getElementById('LastName').value= array_code[j].LastName;
+                //alert(array_code[j].Position);  
                 document.getElementById('Position').value= array_code[j].Position;
+                document.getElementById('NameShow').value = array_code[j].FirstName + " " + array_code[j].LastName;
                 document.getElementById('Montyear').valueAsDate = new Date();
-
 
             }
         }    
           
     }
-    // function On_TYPE1() {
-
-    //     for(var j=0;j<array_code.length;j++){
-    //         if(document.getElementById('EmpID1').value == array_code[j].EmpID  ){
-    //             document.getElementById('NameTitle1').value= array_code[j].NameTitle;
-    //             //alert(array_code[j].NameTitle);  
-    //             document.getElementById('FirstName2').value= array_code[j].FirstName;
-    //             document.getElementById('LastName2').value= array_code[j].LastName;
-    //             document.getElementById('Position1').value= array_code[j].Position;
-    //             document.getElementById('Montyear1').valueAsDate = new Date();
-
-
-    //         }
-    //     }    
-          
-    // }
+    
     function Edit_Value(argument) {
-
-
-        // for(var j=0;j<array_code.length;j++){
+        
             document.getElementById('EmpID1').value = argument.EmpID 
                 document.getElementById('NameTitle1').value= argument.NameTitle;
-                //alert(array_code[j].NameTitle);  
-                document.getElementById('FirstName2').value= argument.FirstName;
-                document.getElementById('LastName2').value= argument.LastName;
+                document.getElementById('NameShow2').value = argument.FirstName + " " + argument.LastName;
                 document.getElementById('Position1').value= argument.Position;
                 document.getElementById('Montyear1').value =argument.Montyear;
                 document.getElementById('Salary1').value =argument.Salary;
@@ -625,6 +774,8 @@
                 document.getElementById('Bonus1').value =argument.Bonus;
                 document.getElementById('CutWages1').value =argument.CutWages;
                 document.getElementById('Sum1').value =argument.Sum;
+
+                
 
 
 
@@ -640,8 +791,9 @@
             document.getElementById('EmpID2').value = argument.EmpID 
                 document.getElementById('NameTitle2').value= argument.NameTitle;
                 //alert(array_code[j].NameTitle);  
-                document.getElementById('FirstName3').value= argument.FirstName;
-                document.getElementById('LastName3').value= argument.LastName;
+                // document.getElementById('FirstName3').value= argument.FirstName;
+                // document.getElementById('LastName3').value= argument.LastName;
+                
                 document.getElementById('Position2').value= argument.Position;
                 document.getElementById('Montyear2').value =argument.Montyear;
                 document.getElementById('Salary2').value =argument.Salary;
@@ -653,7 +805,7 @@
                 document.getElementById('CutWages2').value =argument.CutWages;
                 document.getElementById('Sum2').value =argument.Sum;
 
-
+                document.getElementById('NameShow1').value = argument.FirstName + " " + argument.LastName;
 
 
 
@@ -664,11 +816,159 @@
         var Sum = parseInt(document.getElementById('Salary').value)+parseInt(document.getElementById('OT').value)-parseInt(document.getElementById('SocialSecurity').value)-parseInt(document.getElementById('Late').value)-parseInt(document.getElementById('Absence').value)+parseInt(document.getElementById('Bonus').value)-parseInt(document.getElementById('CutWages').value);
         document.getElementById('Sum').value = Sum;
     }
-    function On_Sum1() {
-        var Sum1 = parseInt(document.getElementById('Salary1').value)+parseInt(document.getElementById('OT1').value)-parseInt(document.getElementById('SocialSecurity1').value)-parseInt(document.getElementById('Late1').value)-parseInt(document.getElementById('Absence1').value)+parseInt(document.getElementById('Bonus1').value)-parseInt(document.getElementById('CutWages1').value);
+    function On_Sum1(argument) {
+        var Sum1 = parseInt(document.getElementById('Salary1').value)+parseInt(document.getElementById('OT1').value)+parseInt(document.getElementById('Bonus1').value)-parseInt(document.getElementById('SocialSecurity1').value)-parseInt(document.getElementById('Late1').value)-parseInt(document.getElementById('Absence1').value)-parseInt(document.getElementById('CutWages1').value);
         document.getElementById('Sum1').value = Sum1;
     }
+    function Submit() {
+        if(document.getElementById('EmpID').value=="" || document.getElementById('Salary').value=="" || document.getElementById('Absence').value=="" || document.getElementById('Late').value=="" || document.getElementById('OT').value=="" || document.getElementById('SocialSecurity').value=="" || document.getElementById('Bonus').value=="" || document.getElementById('CutWages').value=="" ){
+                return false;
+                
+        }
 
+        else{
+                return true;
+            
+        }
+    }
+    function setColor() {
+        if(document.getElementById('EmpID').value==""){
+            document.getElementById('EmpID').style.border =  "3px red solid";
+            document.getElementById('fo1').innerHTML = "กรุณาใส่ข้อมูล";
+        }
+        if(document.getElementById('Salary').value==""){
+            document.getElementById('Salary').style.border =  "3px red solid";
+            document.getElementById('fo2').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Absence').value==""){
+            document.getElementById('Absence').style.border =  "3px red solid";
+            document.getElementById('fo3').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Late').value==""){
+            document.getElementById('Late').style.border =  "3px red solid";
+            document.getElementById('fo4').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('OT').value==""){
+            document.getElementById('OT').style.border =  "3px red solid";
+            document.getElementById('fo5').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('SocialSecurity').value==""){
+            document.getElementById('SocialSecurity').style.border =  "3px red solid";
+            document.getElementById('fo6').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Bonus').value==""){
+            document.getElementById('Bonus').style.border =  "3px red solid";
+            document.getElementById('fo7').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('CutWages').value==""){
+            document.getElementById('CutWages').style.border =  "3px red solid";
+            document.getElementById('fo8').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('EmpID').value!="" || document.getElementById('Salary').value!="" || document.getElementById('Absence').value!="" || document.getElementById('Late').value!="" || document.getElementById('OT').value!="" || document.getElementById('SocialSecurity').value!="" || document.getElementById('Bonus').value!="" || document.getElementById('CutWages').value!="" ){
+
+            if(document.getElementById('EmpID').value!=""){
+                document.getElementById('EmpID').style.border =  "0px";
+                document.getElementById('fo1').innerHTML = "";
+            }
+            if(document.getElementById('Salary').value!=""){
+                document.getElementById('Salary').style.border =  "0px";
+                document.getElementById('fo2').innerHTML = "";
+            } 
+            if(document.getElementById('Absence').value!=""){
+                document.getElementById('Absence').style.border =  "0px";
+                document.getElementById('fo3').innerHTML = "";
+            } 
+            if(document.getElementById('Late').value!=""){
+                document.getElementById('Late').style.border =  "0px";
+                document.getElementById('fo4').innerHTML = "";
+            } 
+            if(document.getElementById('OT').value!=""){
+                document.getElementById('OT').style.border =  "0px";
+                document.getElementById('fo5').innerHTML = "";
+            } 
+            if(document.getElementById('SocialSecurity').value!=""){
+                document.getElementById('SocialSecurity').style.border =  "0px";
+                document.getElementById('fo6').innerHTML = "";
+            } 
+            if(document.getElementById('Bonus').value!=""){
+                document.getElementById('Bonus').style.border =  "0px";
+                document.getElementById('fo7').innerHTML = "";
+            } 
+            if(document.getElementById('CutWages').value!=""){
+                document.getElementById('CutWages').style.border =  "0px";
+                document.getElementById('fo8').innerHTML = "";
+            } 
+        }
+    }
+    function Submit1() {
+        if( document.getElementById('Salary1').value=="" || document.getElementById('Absence1').value=="" || document.getElementById('Late1').value=="" || document.getElementById('OT1').value=="" || document.getElementById('SocialSecurity1').value=="" || document.getElementById('Bonus1').value=="" || document.getElementById('CutWages1').value=="" ){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    function setColor1() {
+        if(document.getElementById('Salary1').value==""){
+            document.getElementById('Salary1').style.border =  "3px red solid";
+            document.getElementById('fo_2').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Absence1').value==""){
+            document.getElementById('Absence1').style.border =  "3px red solid";
+            document.getElementById('fo_3').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Late1').value==""){
+            document.getElementById('Late1').style.border =  "3px red solid";
+            document.getElementById('fo_4').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('OT1').value==""){
+            document.getElementById('OT1').style.border =  "3px red solid";
+            document.getElementById('fo_5').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('SocialSecurity1').value==""){
+            document.getElementById('SocialSecurity1').style.border =  "3px red solid";
+            document.getElementById('fo_6').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('Bonus1').value==""){
+            document.getElementById('Bonus1').style.border =  "3px red solid";
+            document.getElementById('fo_7').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if(document.getElementById('CutWages1').value==""){
+            document.getElementById('CutWages1').style.border =  "3px red solid";
+            document.getElementById('fo_8').innerHTML = "กรุณาใส่ข้อมูล";
+        } 
+        if( document.getElementById('Salary1').value!="" || document.getElementById('Absence1').value!="" || document.getElementById('Late1').value!="" || document.getElementById('OT1').value!="" || document.getElementById('SocialSecurity1').value!="" || document.getElementById('Bonus1').value!="" || document.getElementById('CutWages1').value!="" ){
+
+            if(document.getElementById('Salary1').value!=""){
+                document.getElementById('Salary1').style.border =  "0px";
+                document.getElementById('fo_2').innerHTML = "";
+            } 
+            if(document.getElementById('Absence1').value!=""){
+                document.getElementById('Absence1').style.border =  "0px";
+                document.getElementById('fo_3').innerHTML = "";
+            } 
+            if(document.getElementById('Late1').value!=""){
+                document.getElementById('Late1').style.border =  "0px";
+                document.getElementById('fo_4').innerHTML = "";
+            } 
+            if(document.getElementById('OT1').value!=""){
+                document.getElementById('OT1').style.border =  "0px";
+                document.getElementById('fo_5').innerHTML = "";
+            } 
+            if(document.getElementById('SocialSecurity1').value!=""){
+                document.getElementById('SocialSecurity1').style.border =  "0px";
+                document.getElementById('fo_6').innerHTML = "";
+            } 
+            if(document.getElementById('Bonus1').value!=""){
+                document.getElementById('Bonus1').style.border =  "0px";
+                document.getElementById('fo_7').innerHTML = "";
+            } 
+            if(document.getElementById('CutWages1').value!=""){
+                document.getElementById('CutWages1').style.border =  "0px";
+                document.getElementById('fo_8').innerHTML = "";
+            } 
+        }
+    }
 
 
     $(document).ready(function(){
@@ -696,6 +996,20 @@
             });
         });
     });
+
+</script>
+<script>
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode( key );
+      var regex = /[0-9]|\./;
+      if( !regex.test(key) ) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+
 </script>
 
 
