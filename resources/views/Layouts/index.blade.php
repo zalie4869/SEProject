@@ -26,9 +26,9 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style=" background-color: #171717;">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style=" background-color: #1C1C1C;">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{route('dashboard.index')}}" style="color: #ffffff;">หน้าแรก</a>
+                <a class="navbar-brand" href="{{route('dashboard.index')}}" style="color: #E2E2E2;">หน้าแรก</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
@@ -40,8 +40,8 @@
 
             <ul class="nav navbar-right navbar-top-links">
                 <li class="dropdown"  >
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff;">
-                        <i class="fa fa-user fa-fw" style="color: #ffffff;"></i> {{ Auth::user()->name }} <b class="caret"></b>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #E2E2E2;">
+                        <i class="fa fa-user fa-fw" style="color: #E2E2E2;"></i> {{ Auth::user()->name }} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
