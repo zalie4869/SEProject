@@ -157,6 +157,15 @@
 <script src="{{asset('js/index.js')}}"></script>
 <!-- <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script> -->
 <script type="text/javascript">
+
+    $('#chooseFile').bind('change', function(e) {
+        var data = e.originalEvent.target.files[0];
+        console.log(data.size + " is my file's size");
+        if(data.size < 8388608) {
+            $('#chooseFile').val('');
+        }
+    });
+
     $('#chooseFile').change(function() {
         var filename = $('#chooseFile').val();
         $('#nameFile').val(filename);

@@ -70,7 +70,14 @@ class ScheduleController extends Controller
 
         }
 
-        return redirect('schedule');
+        //return redirect('/schedule');
+
+        $Employees = Employee::where('WorkingStatus',"=",'Working')->get();
+        $linktable = DB::table("connectschedule")
+                    ->join("schedule", "connectschedule.scheduleID", "=", "schedule.ScheduleID")
+                    ->select("*")
+                    ->get();
+        return back()->with('Schedule',$linktable)->with('Employees',$Employees)->with('Success','Insert success');
     }
 
     public function getnum(){

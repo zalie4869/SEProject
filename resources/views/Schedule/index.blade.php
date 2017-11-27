@@ -191,7 +191,7 @@
                             <input type="text" class = "form-control" id="sun" name="Sat" value="">
                         </div>
                         <div class="col-xs-12" style="margin-top:10px" id = "btn-edit">
-                            <button type="submit" onclick = "addedit()" class = "btn btn-primary btn-block">Edit <span class="glyphicon glyphicon-user"></span></button>
+                            <button type="submit" class = "btn btn-primary btn-block">Edit <span class="glyphicon glyphicon-user"></span></button>
                         </div>
                     </div>
                     
@@ -206,13 +206,34 @@
 
 </div>
 
+<!-- Success -->
+<div class="modal fade" id="InsertSuccess1" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #ccffcc; border-radius: 4px; border-color: #009900; color: #008000;">
+                <p><center>แก้ไขตารางเรียบร้อยแล้ว</center></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-   <script src="{{asset('js/jquery.min.js')}}"></script>
-   <!-- <script src="{{asset('js/bootstrap.min.js')}}"></script> -->
-   <script src="{{asset('js/metisMenu.min.js')}}"></script>
-   <script src="{{asset('js/startmin.js')}}"></script>
-   <script src = "{{asset('js/index.js')}}"></script>
 
+
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<!-- <script src="{{asset('js/bootstrap.min.js')}}"></script> -->
+<script src="{{asset('js/metisMenu.min.js')}}"></script>
+<script src="{{asset('js/startmin.js')}}"></script>
+<script src = "{{asset('js/index.js')}}"></script>
+
+<script type="text/javascript">
+
+    @if(session('Success'))
+        //document.getElementById("InsertSuccess1").showModal();
+        $('#InsertSuccess1').modal('show');
+    @endif
+
+</script>
 
    @stop
