@@ -74,7 +74,7 @@
                         <th>Friday</th>
                         <th>Saturday</th>
                         <th>Sunday</th>
-                        <th>แก้ไข</th>
+                        <th class="no-print">แก้ไข</th>
 
                     </tr>
                 </thead>
@@ -122,7 +122,7 @@
                           
                         @endif
                         <td>
-                            <button class = "btn btn-primary btn-block" data-toggle="modal" data-target="#myModal" >
+                            <button class = "no-print btn btn-primary btn-block" data-toggle="modal" data-target="#myModal" >
                             <span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                         @endforeach
@@ -130,6 +130,14 @@
                 </tbody>
             </table>
     </div>
+
+    <div class = "no-print col-md-2 row">
+                <button class = "btn btn-primary btn-block" onclick = "window.print()">
+                    <span class="glyphicon glyphicon-print"></span> Print</button>
+                
+    </div> 
+
+
     <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
