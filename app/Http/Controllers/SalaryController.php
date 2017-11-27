@@ -21,20 +21,14 @@ class SalaryController extends Controller
             $year=$yearmin;
         }
 
-        $Employees1 = Employee::get();
-        //$Salarys = Salary::whereYear('Montyear','=',$year)->get();
+        $Employees1 = Employee::where('WorkingStatus','=','Working')->get();
         $Employees = Salary::join('Employee', 'Employee.EmpID', '=', 'Salary.EmpID')
-        ->whereYear('Montyear','=',$year)
-        ->whereMonth('Montyear','=',$request->month)
-        ->get();
+                            ->whereYear('Montyear','=',$year)
+                            ->whereMonth('Montyear','=',$request->month)
+                            ->get();
+
         return view('Salary.index')->with('Employees',$Employees)->with('year',$year)->with('month_Num',$month_Num)->with('Employees1',$Employees1);
     }
-
-    // public function Index1()
-    // {
-    //     $Salarys = Salary::get();
-    //     return view('index')->with('Salarys',$Salarys);
-    // }
 
     public function Insert(Request $request){
 
@@ -44,11 +38,7 @@ class SalaryController extends Controller
 
         $Salary = new Salary;
         $Salary->EmpID = $request->EmpID;
-            // $Employee = Employee::where('EmpID','=',$SS)->get();;
-            // $Employee->FirstName = $request->input('FirstName');
-            // $Employee->LastName = $request->input('LastName');
         $Salary->Montyear = $request->Montyear;
-            // $Employee->Position = $request->input('Position');
         $Salary->Salary = $request->Salary;
         $Salary->Absence = $request->Absence;
         $Salary->Late = $request->Late;
@@ -81,8 +71,6 @@ class SalaryController extends Controller
         }
 
         $Salary = Salary::where('EmpID','=',$request->EmpID1)->first();
-        //$Salary->Montyear = $request->Montyear1;
-        // $Employee->Position = $request->input('Position');
         $Salary->Salary = $request->Salary1;
         $Salary->Absence = $request->Absence1;
         $Salary->Late = $request->Late1;
@@ -97,11 +85,3 @@ class SalaryController extends Controller
     }
 
 }
-
-// class SalaryController extends Controller
-// {
-//     public function Index(){
-//      $Employees = Salary::get();
-//      return view('index')->with('Employees',$Employees);
-//     }
-// }

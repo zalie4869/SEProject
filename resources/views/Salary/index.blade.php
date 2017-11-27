@@ -22,13 +22,13 @@
 
 <!-- Page Content -->
 <div id="page-wrapper" style="border-color: black">
-    
+
     <div class = "row">
         <div class = "col-xs-7 col-ms-8 col-md-8">
             <h1 class="page-header" >คำนวณเงินเดือน</h1>
         </div>
         <!-- <div class="col-xs-2"></div> -->
-        <div class = "col-xs-5 col-ms-3 col-md-3">
+        <div class = "col-xs-5 col-ms-3 col-md-3" style="float: right;">
             <button class=" page-header button_1" data-toggle="modal" data-target="#insert" >คำนวณเงินเดือน</button>
         </div>
     </div>
@@ -98,45 +98,79 @@
     <br><div  style="float: center; " >
         <div class="table-responsive" Id = 'msg'>
            <table id="mytable" class="table table-bordred table-striped table-hover">
-             
+
             <thead>
-             <th >รหัสพนักงาน</th>
-             <th>ชื่อ</th>
-             <th>นามสกุล</th>
-             <th>ตำแหน่ง</th>
-             <th>เงินเดือน</th>
-             <th>แก้ไข</th>
-             <th>ลบ</th>
+             <th><center>รหัสพนักงาน</center></th>
+             <th><center>ชื่อ</center></th>
+             <th><center>นามสกุล</center></th>
+             <th><center>ตำแหน่ง</center></th>
+             <th><center>เงินเดือน</center></th>
+             <th><center>แก้ไข</center></th>
+             <th><center>ลบ</center></th>
 
          </thead>
 
          <tbody>
-            
+
            @foreach($Employees as $Employee)                   
            <tr id="{{$Employee->SalaryID}}">
-            <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->EmpID}}</td>
-            <td id="FirstName1" data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->FirstName}}</td>
-            <td id="LastName1"  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->LastName}}</td>
-            <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->Position}}</td>
-            <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">{{$Employee->Sum}}</td>
-            <td>
-                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                    <button class="btn btn-primary btn-xs press-edit" data-title="Edit" data-toggle="modal" data-target="#edit" Onclick="Edit_Value({{$Employee}})" >
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                </p>
+            <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center>{{$Employee->IDEmployee}}</center>
+            </td>
+            <td id="FirstName1" data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center>{{$Employee->FirstName}}</center>
+            </td>
+            <td id="LastName1"  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center>{{$Employee->LastName}}</center>
+            </td>
+
+            @if($Employee->Position == 'BranchManager')
+                <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                    <center>ผู้จัดการร้าน</center>
+                </td>
+            @elseif($Employee->Position == 'AssistantManager')
+                <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                    <center>ผู้ช่วยผู้จัดการ</center>
+                </td>
+            @elseif($Employee->Position == 'StaffFull-Time')
+                <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                    <center>พนักงานประจำ</center>
+                </td>
+            @elseif($Employee->Position == 'StaffPart-time')
+                <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                    <center>พนักงานชั่วคราว</center>
+                </td>
+            @else
+                <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                    <center>{{$Employee->Position}}</center>
+                </td>
+            @endif
+            
+            <td  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center>{{$Employee->Sum}}</center>
             </td>
             <td>
-                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" value="{{$Employee->SalaryID}}" onclick="On_Salary(value)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </p>
+                <center>
+                    <p data-placement="top" data-toggle="tooltip" title="Edit">
+                        <button class="btn btn-primary btn-xs press-edit" data-title="Edit" data-toggle="modal" data-target="#edit" Onclick="Edit_Value({{$Employee}})" >
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </p>
+                </center>
+            </td>
+            <td>
+                <center>
+                    <p data-placement="top" data-toggle="tooltip" title="Delete">
+                        <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" value="{{$Employee->SalaryID}}" onclick="On_Salary(value)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </p>
+                </center>
             </td>
         </tr> 
         @endforeach
     </tbody>
-    
+
 </table>
 </div>
 </div>
@@ -160,14 +194,14 @@
                     <div class = "row rowbottom" >
                         <div class = "col-xs-12 col-sm-6 marginbottom">
                             <div class = "col-xs-5" style = "line-height : 34px;">
-                                <p class = "center" style = "margin : 0;">รหัสพนักงาน</p>
+                                <p class = "center" style = "margin : 0;">โปรดเลือก</p>
                             </div>
                             
                             <div class = "col-xs-7 paddingleft " >
-                                <select class="form-control " name="EmpID" id="EmpID" onchange="On_TYPE()"  >
-                                    <option selected hidden value>โปรดเลือก</option>
+                                <select class="form-control " name="EmpID" id="EmpID" onchange="On_TYPE()" style="width: 160px;">
+                                    <option selected hidden value>รายชื่อ</option>
                                     @foreach($Employees1 as $Employee)
-                                    <option value="{{$Employee->EmpID}}" >{{$Employee->EmpID}}</option>
+                                    <option value="{{$Employee->EmpID}}" >{{$Employee->IDEmployee}}-{{$Employee->FirstName}}</option>
                                     @endforeach
                                 </select> 
                                 <span style="color: red;" id="fo1"></span>
@@ -180,7 +214,7 @@
                                 <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
                             </div>
                             <div class = "col-xs-8 paddingleft">
-                                
+
                                 <input class="form-control" type="text" id = "Position" readonly style = "text-align : center;">
                                 
                                 
@@ -193,10 +227,10 @@
                     <div class = "row rowbottom">
                         <div class = "col-xs-12" style = "line-height : 34px;">
                             <div class = "col-xs-4 paddingleft">
-                                <input class="form-control " type="text" id = "NameTitle" readonly>
+                                <input class="form-control " type="text" id = "NameTitle" readonly style = "text-align : center;">
                             </div>
                             <div class = "col-xs-8" style = "padding-left : 0">
-                                
+
                                 <input class="form-control " type="text" id = "NameShow" readonly style = "text-align : center;">
                                 
                             </div>
@@ -206,9 +240,9 @@
                     <div class = "row rowbottom">
                         <div class = "col-xs-12" style = "line-height : 34px;">
                             <div class = "col-xs-5">
-                                <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                                <p class = "center" style = "margin : 0;">วัน/เดือน/ปี ทีต้องการคิดเงินเดือน</p>
                             </div>
-                            <div class = "col-xs-7" style = "padding-left : 0;">
+                            <div class = "col-xs-7" style = "padding-left : 0; text-align: center;">
                                 <input class="form-control " type="date" name="Montyear" id = "Montyear">
                             </div>
                         </div>
@@ -225,7 +259,7 @@
                                 <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'> 
+                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0"> 
                                 <span style="color: red;" id="fo2"></span>
                             </div>
                         </div>
@@ -236,8 +270,8 @@
                                 <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                
-                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)'>
+
+                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)' value="0">
                                 <span style="color: red;" id="fo3"></span>
                             </div>
                         </div>
@@ -251,7 +285,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>  
+                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">  
                                 <span style="color: red;" id="fo4"></span> 
                             </div>
                         </div>
@@ -262,7 +296,7 @@
                                 <p class = "center" style = "margin : 0;">OT</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>
+                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">
                                 <span style="color: red;" id="fo5"></span> 
                             </div>
 
@@ -276,7 +310,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>   
+                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">   
                                 <span style="color: red;" id="fo6"></span> 
                             </div>
                         </div>
@@ -287,7 +321,7 @@
                                 <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' >
+                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">
                                 <span style="color: red;" id="fo7"></span> 
                             </div>
                         </div>
@@ -300,7 +334,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)'>   
+                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">   
                                 <span style="color: red;" id="fo8"></span> 
                             </div>
                         </div>
@@ -311,7 +345,7 @@
                                 <p class = "center" style = "margin : 0; border-bottom : 2px solid red;">รวมยอดเงินที่ได้</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "Sum" name = "Sum" style = "text-align : center;" readonly >
+                                <input class="form-control " type="number" id = "Sum" name = "Sum" style = "text-align : center;" readonly value="0">
                             </div>
                         </div>
                     </div>
@@ -386,7 +420,7 @@
                                 </div>
                                 
                                 <div class = "col-xs-7 paddingleft">
-                                    <input class="form-control " name="EmpID1" Id="EmpID1" type="text"  style="width: 100%;" readonly>  
+                                    <input class="form-control " name="EmpID1" Id="EmpID1" type="text"  style="width: 100%; text-align : center;" readonly>
                                 </div>
                             </div>
 
@@ -396,7 +430,7 @@
                                     <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
                                 </div>
                                 <div class = "col-xs-8 paddingleft">
-                                    
+
                                     <input class="form-control " type="text" id = "Position1" readonly style = "text-align : center;">
                                     
                                 </div>
@@ -408,10 +442,10 @@
                         <div class = "row rowbottom">
                             <div class = "col-xs-12" style = "line-height : 34px;">
                                 <div class = "col-xs-4 paddingleft">
-                                    <input class="form-control " type="text"  id="NameTitle1" id = "NameTitle" readonly>
+                                    <input class="form-control " type="text"  id="NameTitle1" id = "NameTitle" readonly style = "text-align : center;">
                                 </div>
                                 <div class = "col-xs-8" style = "padding-left : 0">
-                                    
+
                                     <input class="form-control " type="text" id = "NameShow2" readonly style = "text-align : center;">
                                     
                                 </div>
@@ -421,10 +455,10 @@
                         <div class = "row rowbottom">
                             <div class = "col-xs-12" style = "line-height : 34px;">
                                 <div class = "col-xs-5">
-                                    <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                                    <p class = "center" style = "margin : 0;">วัน/เดือน/ปี ที่คิดเงินเดือน</p>
                                 </div>
                                 <div class = "col-xs-7" style = "padding-left : 0;">
-                                    <input class="form-control" type="date"  name="Montyear1" Id="Montyear1" readonly >
+                                    <input class="form-control" type="date"  name="Montyear1" Id="Montyear1" readonly style = "text-align : center;">
                                 </div>
                             </div>
                         </div>
@@ -451,7 +485,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    
+
                                     <input class="form-control " type="number" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1()"onkeypress='validate(event)'>
                                     <span style="color: red;" id="fo_3"></span>    
                                 </div>
@@ -562,9 +596,7 @@
                                     <p class = "center" style = "margin : 0;">รหัสพนักงาน</p>
                                 </div>
                                 <div class = "col-xs-6 paddingleft">
-                                    
-                                    <input class="form-control active"  type="text" id="EmpID2" readonly style = "text-align : center;">
-                                    
+                                    <input class="form-control active"  type="text" id="EmpID2" readonly style = "text-align : center; width: 150px;">
                                 </div>
                             </div>
 
@@ -574,9 +606,7 @@
                                     <p class = "center" style = "margin : 0;">ตำแหน่ง</p>
                                 </div>
                                 <div class = "col-xs-8 paddingleft">
-                                    
                                     <input class="form-control active" type="text" id = "Position2" readonly style = "text-align : center;">
-                                    
                                 </div>
                             </div>
                         </div>
@@ -586,10 +616,10 @@
                         <div class = "row rowbottom">
                             <div class = "col-xs-12" style = "line-height : 34px;">
                                 <div class = "col-xs-4 paddingleft">
-                                    <input class="form-control active" type="text" id = "NameTitle2" readonly>
+                                    <input class="form-control active" type="text" id = "NameTitle2" readonly style = "text-align : center;">
                                 </div>
                                 <div class = "col-xs-8" style = "padding-left : 0">
-                                    
+
                                     <input class="form-control active" type="text" id = "NameShow1" readonly style = "text-align : center;">
                                     
                                 </div>
@@ -599,10 +629,10 @@
                         <div class = "row rowbottom">
                             <div class = "col-xs-12" style = "line-height : 34px;">
                                 <div class = "col-xs-5">
-                                    <p class = "center" style = "margin : 0;">วัน/เดือน/ปี</p>
+                                    <p class = "center" style = "margin : 0;">วัน/เดือน/ปี ที่คิดเงินเดือน</p>
                                 </div>
                                 <div class = "col-xs-7" style = "padding-left : 0;">
-                                    <input class="form-control active" type="date" id = "Montyear2" readonly>
+                                    <input class="form-control active" type="date" id = "Montyear2" readonly style = "text-align : center;">
                                 </div>
                             </div>
                         </div>
@@ -628,7 +658,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">ขาดงาน</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    
+
                                     <input class="form-control active" type="text" id = "Absence2" style = "text-align : center;" readonly>
                                     
                                 </div>
@@ -745,26 +775,80 @@
         ?>
 
         function On_TYPE() {
-           
+
             for(var j=0;j<array_code.length;j++){
                 if(document.getElementById('EmpID').value == array_code[j].EmpID  ){
-                    document.getElementById('NameTitle').value= array_code[j].NameTitle;
-                //alert(array_code[j].Position);  
-                document.getElementById('Position').value= array_code[j].Position;
-                document.getElementById('NameShow').value = array_code[j].FirstName + " " + array_code[j].LastName;
-                document.getElementById('Montyear').valueAsDate = new Date();
 
-            }
-        }    
-        
-    }
+                    if(array_code[j].NameTitle === 'Mr'){
+                        document.getElementById('NameTitle').value= 'นาย';
+                    }
+                    else if(array_code[j].NameTitle === 'Mrs'){
+                        document.getElementById('NameTitle').value= 'นาง';
+                    }
+                    else if(array_code[j].NameTitle === 'Miss'){
+                        document.getElementById('NameTitle').value= 'นางสาว';
+                    }
+                    else{
+                        document.getElementById('NameTitle').value= array_code[j].NameTitle;
+                    }
+
+                    if(array_code[j].Position === 'BranchManager'){
+                        document.getElementById('Position').value= 'ผู้จัดการร้าน';
+                    }
+                    else if(array_code[j].Position === 'AssistantManager'){
+                        document.getElementById('Position').value= 'ผู้ช่วยผู้จัดการ';
+                    }
+                    else if(array_code[j].Position === 'StaffFull-Time'){
+                        document.getElementById('Position').value= 'พนักงานประจำ';
+                    }
+                    else if(array_code[j].Position === 'StaffPart-time'){
+                        document.getElementById('Position').value= 'พนักงานชั่วคราว';
+                    }
+                    else{
+                        document.getElementById('Position').value= array_code[j].Position;
+                    }
+                    
+                    document.getElementById('NameShow').value = array_code[j].FirstName + " " + array_code[j].LastName;
+                    document.getElementById('Montyear').valueAsDate = new Date();
+                }
+            }    
+            
+        }
     
     function Edit_Value(argument) {
-        
-        document.getElementById('EmpID1').value = argument.EmpID 
-        document.getElementById('NameTitle1').value= argument.NameTitle;
+
+        document.getElementById('EmpID1').value = argument.IDEmployee;
+
+        if(argument.NameTitle === 'Mr'){
+            document.getElementById('NameTitle1').value = 'นาย';
+        }
+        else if(argument.NameTitle === 'Mrs'){
+            document.getElementById('NameTitle1').value = 'นาง';
+        }
+        else if(argument.NameTitle === 'Miss'){
+            document.getElementById('NameTitle1').value = 'นางสาว';
+        }
+        else{
+            document.getElementById('NameTitle1').value = argument.NameTitle;
+        }
+
+        if(argument.Position === 'BranchManager'){
+            document.getElementById('Position1').value = 'ผู้จัดการร้าน';
+        }
+        else if(argument.Position === 'AssistantManager'){
+            document.getElementById('Position1').value = 'ผู้ช่วยผู้จัดการ';
+        }
+        else if(argument.Position === 'StaffFull-Time'){
+            document.getElementById('Position1').value = 'พนักงานประจำ';
+        }
+        else if(argument.Position === 'StaffPart-time'){
+            document.getElementById('Position1').value = 'พนักงานชั่วคราว';
+        }
+        else{
+            document.getElementById('Position1').value = argument.Position;
+        }
+
         document.getElementById('NameShow2').value = argument.FirstName + " " + argument.LastName;
-        document.getElementById('Position1').value= argument.Position;
         document.getElementById('Montyear1').value =argument.Montyear;
         document.getElementById('Salary1').value =argument.Salary;
         document.getElementById('Absence1').value =argument.Absence;
@@ -788,13 +872,38 @@
 
 
         // for(var j=0;j<array_code.length;j++){
-            document.getElementById('EmpID2').value = argument.EmpID 
+            document.getElementById('EmpID2').value = argument.IDEmployee 
             document.getElementById('NameTitle2').value= argument.NameTitle;
-                //alert(array_code[j].NameTitle);  
-                // document.getElementById('FirstName3').value= argument.FirstName;
-                // document.getElementById('LastName3').value= argument.LastName;
+
+                if(argument.NameTitle === 'Mr'){
+                    document.getElementById('NameTitle2').value = 'นาย';
+                }
+                else if(argument.NameTitle === 'Mrs'){
+                    document.getElementById('NameTitle2').value = 'นาง';
+                }
+                else if(argument.NameTitle === 'Miss'){
+                    document.getElementById('NameTitle2').value = 'นางสาว';
+                }
+                else{
+                    document.getElementById('NameTitle2').value = argument.NameTitle;
+                }
+
+                if(argument.Position === 'BranchManager'){
+                    document.getElementById('Position2').value = 'ผู้จัดการร้าน';
+                }
+                else if(argument.Position === 'AssistantManager'){
+                    document.getElementById('Position2').value = 'ผู้ช่วยผู้จัดการ';
+                }
+                else if(argument.Position === 'StaffFull-Time'){
+                    document.getElementById('Position2').value = 'พนักงานประจำ';
+                }
+                else if(argument.Position === 'StaffPart-time'){
+                    document.getElementById('Position2').value = 'พนักงานชั่วคราว';
+                }
+                else{
+                    document.getElementById('Position2').value = argument.Position;
+                }
                 
-                document.getElementById('Position2').value= argument.Position;
                 document.getElementById('Montyear2').value =argument.Montyear;
                 document.getElementById('Salary2').value =argument.Salary;
                 document.getElementById('Absence2').value =argument.Absence;

@@ -11,13 +11,13 @@
 |
 */
 
-// Route::get('/check-DB',function(){
-// 	if(DB::connection()->getDatabaseName()){
-// 		return "Yes! successfully connected to the DB: " . DB::connection()->getDatabaseName();
-// 	}else{
-//  		return 'Connection False !!';
-//  	}
-// });
+Route::get('/check-DB',function(){
+	if(DB::connection()->getDatabaseName()){
+		return "Yes! successfully connected to the DB: " . DB::connection()->getDatabaseName();
+	}else{
+ 		return 'Connection False !!';
+ 	}
+});
 
 Route::get('/', function () {
     return redirect('/dashboard');
