@@ -92,7 +92,8 @@ class FileController extends Controller
         $file = DB::table('files')->where('id',$request->name)->first();
         Storage::delete($file->dir);
         DB::table('files')->where('id',$request->name)->delete();
-        return redirect('/file/1');
+        //return redirect('/file/1');
+        return back()->with('DeleteSuccess','Delete success');
       // echo $request->name;
     }
 }

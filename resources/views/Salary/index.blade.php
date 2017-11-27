@@ -23,15 +23,11 @@
 <!-- Page Content -->
 <div id="page-wrapper" style="border-color: black">
 
-    <div class = "row">
-        <div class = "col-xs-7 col-ms-8 col-md-8">
-            <h1 class="page-header" >คำนวณเงินเดือน</h1>
-        </div>
-        <!-- <div class="col-xs-2"></div> -->
-        <div class = "col-xs-5 col-ms-3 col-md-3" style="float: right;">
-            <button class=" page-header button_1" data-toggle="modal" data-target="#insert" >คำนวณเงินเดือน</button>
-        </div>
-    </div>
+    <h1 class="page-header">ข้อมูลเงินเดือน 
+        <button type="button" class="btn btn-success press-insert" data-title="Insert" data-toggle="modal" data-target="#insert" style="float: right;">
+            <i class="fa fa-plus-square"></i>&nbsp;เพิ่ม
+        </button>
+    </h1>
     
     
     <div class="form-group">
@@ -72,7 +68,7 @@
             </div>
             <div class="col-xs-12 col-sm-1 ">
                 <div class="col-xs-8"></div>
-                <div class="col-xs-4 col-sm-4 ">
+                <div class="col-xs-4 col-sm-4 " style="margin-top: 4px;">
                     <a href=" " type="button" class="btn btn-primary" id="YearMonth" onclick="Year_Month(document.getElementById('Year').value,document.getElementById('Month').value)">ค้นหา</a>    
                 </div>
                 

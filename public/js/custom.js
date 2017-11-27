@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $("tr").click(function(){
-      $(this).addClass("selected").siblings().removeClass("selected");
-  });
-})
+// $(document).ready(function(){
+//   $("tr").click(function(){
+//       $(this).addClass("selected").siblings().removeClass("selected");
+//   });
+// })

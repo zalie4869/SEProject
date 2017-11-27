@@ -10,7 +10,7 @@ function editfunction(x){
     for(var i = 0 ; i < document.getElementById("mytable").rows[x.rowIndex].cells.length ; i++){
         old[i] = document.getElementById('mytable').rows[x.rowIndex].cells[i].innerHTML;
     }
-    console.log(old);
+    //console.log(old);
     document.getElementById("EmpID").value = old[0] ;
     document.getElementById("name").value = old[1];
     document.getElementById("pos").value = old[2];
@@ -119,7 +119,7 @@ function delrow(){
     var y = document.getElementById('btn-dis');
     var z = document.getElementById('btn-edit');
     
-    console.log(indextable);
+    //console.log(indextable);
     // alert("You just Delete all in row " + document.getElementById('mytable').rows[indextable].cells[0].innerHTML);
     if(confirm("ลบข้อมูลของ " + document.getElementById('mytable').rows[indextable].cells[0].innerHTML)){
         document.getElementById("mytable").deleteRow(indextable);

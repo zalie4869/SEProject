@@ -45,14 +45,14 @@
 
                     <input type="submit"  value="Upload" class="btn btn-primary" style="vertical-align: top;line-height: 25px;">
 
-                    @if(session('upload0')) 
+                    <!-- @if(session('upload0')) 
                         <div class="alert alert-success" style="margin-top: 10px;">
                            <center>อัพโหลดไฟล์สำเร็จ<strong>!!</strong></center>
                         </div>
 
                     @elseif(session('upload1')) 
                         <div class="alert alert-danger" style="margin-top: 10px;">
-                           <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง<strong>!!</strong></center>
+                           <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง (*.JPG .JPEG .PDF .DOC .XLS .PPW*)<strong>!!</strong></center>
                         </div>
 
                     @elseif(session('upload2')) 
@@ -61,9 +61,9 @@
                         </div>
                     @elseif(session('upload3')) 
                         <div class="alert alert-danger" style="margin-top: 10px;">
-                            <center>ขนาดไฟล์ใหญ่เกินไป<strong>!!</strong></center>
+                            <center>ขนาดไฟล์ใหญ่เกินไป (*ขนาดต้องไม่เกิน 8 MB*)<strong>!!</strong></center>
                         </div>
-                    @endif
+                    @endif -->
                </div>
            </form>
        </div>
@@ -88,17 +88,10 @@
         <tbody>
             @foreach ($files as $file)
             <tr>
-                <!-- 
-                    <?php $src = "public/upload".substr($file->dir, 13); ?>
-                    <td><a class="example-image-link" href="{{asset($src)}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image"  width="100" height="100" src="{{asset($src)}}" alt=""/></a></td> -->
-
                     <td>{{$file->name}}</td>
                     <td>{{ceil($file->size/1000000)}} MB</td>
                     <td>{{$file->created_at}}</td>
                     <td>
-
-
-
 
                         <form action="{{ route('delete')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field()}}
@@ -109,9 +102,6 @@
                             <button type="submit" class="btn btn-danger" onclick="Delete(event)" name="delete"/ ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                         </form>
-
-
-
 
                         <script type="text/javascript">
                             function Delete(event) {
@@ -126,8 +116,6 @@
                 </tr>
                 @endforeach
             </table>
-
-            
 
     </div>
     <div id="page" style="display: none;">
@@ -149,6 +137,27 @@
 
 </div>
 
+<!-- File Problems -->
+<div class="modal fade" id="fileModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #f2dede; border-radius: 4px; border-color: #ebccd1; color: #a94442;">
+                <p><center id="filePB"></center></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success -->
+<div class="modal fade" id="fileSuccess" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #ccffcc; border-radius: 4px; border-color: #009900; color: #008000;">
+                <p><center  id="fileSuccessText"></center></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <!-- <script src="{{asset('js/bootstrap.min.js')}}"></script> -->
@@ -158,11 +167,98 @@
 <!-- <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script> -->
 <script type="text/javascript">
 
+    // @if(session('upload0')) 
+    //                     <div class="alert alert-success" style="margin-top: 10px;">
+    //                        <center>อัพโหลดไฟล์สำเร็จ<strong>!!</strong></center>
+    //                     </div>
+
+    //                 @elseif(session('upload1')) 
+    //                     <div class="alert alert-danger" style="margin-top: 10px;">
+    //                        <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง (*.JPG .JPEG .PDF .DOC .XLS .PPW*)<strong>!!</strong></center>
+    //                     </div>
+
+    //                 @elseif(session('upload2')) 
+    //                     <div class="alert alert-danger" style="margin-top: 10px;">
+    //                         <center>กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน<strong>!!</strong></center>
+    //                     </div>
+    //                 @elseif(session('upload3')) 
+    //                     <div class="alert alert-danger" style="margin-top: 10px;">
+    //                         <center>ขนาดไฟล์ใหญ่เกินไป (*ขนาดต้องไม่เกิน 8 MB*)<strong>!!</strong></center>
+    //                     </div>
+    //                 @endif
+
+    $( document ).ready(function() {
+        @if(session('upload0'))
+            $('#fileSuccessText').html('อัพโหลดไฟล์สำเร็จ');
+            $('#fileSuccess').modal('show');
+            setTimeout(function(){
+                $('#fileSuccess').modal('hide');
+            },1400);
+        @elseif(session('upload1'))
+            $('#filePB').html('กรุณาเลือกชนิดไฟล์ให้ถูกต้อง<br>(.JPG .JPEG .PDF .DOC .XLS .PPW)');
+            $('#fileModal').modal('show');
+            // setTimeout(function(){
+            //     $('#fileModal').modal('hide');
+            // },1400);
+        @elseif(session('upload2'))
+            $('#filePB').html('กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน');
+            $('#fileModal').modal('show');
+            // setTimeout(function(){
+            //     $('#fileModal').modal('hide');
+            // },1400);
+        @elseif(session('upload3'))
+            $('#filePB').html('ขนาดไฟล์ใหญ่เกินไป<br>(ขนาดต้องไม่เกิน 8 MB)');
+            $('#fileModal').modal('show');
+            // setTimeout(function(){
+            //     $('#fileModal').modal('hide');
+            // },1400);
+        @elseif(session('DeleteSuccess'))
+            $('#filePB').html('ลบข้อมูลเรียบร้อยแล้ว');
+            $('#fileModal').modal('show');
+            setTimeout(function(){
+                $('#fileModal').modal('hide');
+            },1000);
+        @endif
+    });
+
+    var typeOfFile = [
+            'image/jpeg',
+            'image/jpg',
+            'application/pdf',
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+
+        ];
+
+    
+
     $('#chooseFile').bind('change', function(e) {
         var data = e.originalEvent.target.files[0];
-        console.log(data.size + " is my file's size");
-        if(data.size < 8388608) {
+        //console.log("type of file : "+data.type);
+        //console.log(data.size + " is my file's size");
+
+        if(typeOfFile.indexOf(data.type) ===  -1){
             $('#chooseFile').val('');
+            $('#filePB').html('กรุณาเลือกชนิดไฟล์ให้ถูกต้อง<br>(.JPG .JPEG .PDF .DOC .XLS .PPW)');
+            $('#fileModal').modal('show');
+            // setTimeout(function(){
+            //     $('#fileModal').modal('hide');
+            // },1000);
+        }
+        else{
+            if(data.size < 8388608) {
+                //console.log("OK");
+
+            }
+            else{
+                $('#chooseFile').val('');
+                $('#filePB').html('ขนาดไฟล์ใหญ่เกินไป<br>(ขนาดต้องไม่เกิน 8 MB)');
+                $('#fileModal').modal('show');
+                // setTimeout(function(){
+                //     $('#fileModal').modal('hide');
+                // },1000);
+            }
         }
     });
 
