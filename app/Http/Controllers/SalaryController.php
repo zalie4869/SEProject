@@ -15,6 +15,9 @@ class SalaryController extends Controller
             return redirect('/home');
         }
 
+        $firstYear = 2007;
+        $lastYear = 2050;
+
         $yearmin = 2000;
         $month_Num = $request->month;
         if($year<$yearmin){
@@ -27,7 +30,7 @@ class SalaryController extends Controller
                             ->whereMonth('Montyear','=',$request->month)
                             ->get();
 
-        return view('Salary.index')->with('Employees',$Employees)->with('year',$year)->with('month_Num',$month_Num)->with('Employees1',$Employees1);
+        return view('Salary.index')->with('Employees',$Employees)->with('year',$year)->with('month_Num',$month_Num)->with('Employees1',$Employees1)->with('firstYear',$firstYear)->with('lastYear',$lastYear);
     }
 
     public function Insert(Request $request){

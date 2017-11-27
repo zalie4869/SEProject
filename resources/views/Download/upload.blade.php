@@ -23,83 +23,90 @@
 <div id="page-wrapper" style="border-color: #222;">
     <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">ข้อมูลเอกสาร</h1>
-                </div>
-
-                <div>
-                    <form action="{{ route('upload.file')}}" method="post" enctype="multipart/form-data" >
-                    {{ csrf_field()}}
-
-                <div class="form-group">
-                    <div class="file-upload" style="width: 500px;">
-                      <div class="file-select">
-                        <div class="file-select-button" id="fileName">Choose File</div>
-                        <input class="file-select-name" name="filename" id="nameFile" placeholder="No file chosen..." 
-                        style="line-height: 36px; vertical-align: top;width: 408px; border: unset; cursor: pointer;">
-
-                        <input type="file" name="file" id="chooseFile" style="width: 84px;">
-                      </div>
-                    </div>
-
-                     <input type="submit"  value="Upload" class="btn btn-primary" style="vertical-align: top;line-height: 25px;">
-
-                           @if(session('upload1')) 
-                             <div class="alert alert-danger">
-                                 <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง<strong>!!</strong></center>
-                            </div>
-                            @endif  
-
-                            @if(session('upload2')) 
-                             <div class="alert alert-danger">
-                                 <center>กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน<strong>!!</strong></center>
-                            </div>
-                            @endif
-
-                        </div>
-                    </form>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">ข้อมูลเอกสาร</h1>
             </div>
 
-            <div>
-                
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th  style="display: none;" scope="col">#</th>
-                       <!--  <th scope="col">ตัวอย่างเอกสาร</th> -->
-                        <th scope="col">ชื่อ</th>
-                        <th scope="col">ขนาดไฟล์</th>
-                        <th scope="col">วันที่สร้าง</th>
-                        <th  scope="col"></th>
-                        
-                       
-                    </tr>
-                </thead>
+            <div >
+                <form action="{{ route('upload.file')}}" method="post" enctype="multipart/form-data" >
+                    {{ csrf_field()}}
 
-                <tbody>
-                @foreach ($files as $file)
-                <tr>
+                    <div class="form-group">
+                        <div class="file-upload col-xs-9 col-lg-5">
+                          <div class="file-select col-xs-12 col-lg-12" >
+                            <div class="file-select-button" id="fileName">Choose File</div>
+                            <input class="file-select-name" name="filename" id="nameFile" placeholder="No file chosen..." 
+                            style="border: unset; cursor: pointer;" readonly>
+
+                            <input type="file" name="file" id="chooseFile" style="width: 84px;">
+                        </div>
+                    </div>
+
+                    <input type="submit"  value="Upload" class="btn btn-primary" style="vertical-align: top;line-height: 25px;">
+
+                    @if(session('upload0')) 
+                        <div class="alert alert-success" style="margin-top: 10px;">
+                           <center>อัพโหลดไฟล์สำเร็จ<strong>!!</strong></center>
+                        </div>
+
+                    @elseif(session('upload1')) 
+                        <div class="alert alert-danger" style="margin-top: 10px;">
+                           <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง<strong>!!</strong></center>
+                        </div>
+
+                    @elseif(session('upload2')) 
+                        <div class="alert alert-danger" style="margin-top: 10px;">
+                            <center>กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน<strong>!!</strong></center>
+                        </div>
+                    @elseif(session('upload3')) 
+                        <div class="alert alert-danger" style="margin-top: 10px;">
+                            <center>ขนาดไฟล์ใหญ่เกินไป<strong>!!</strong></center>
+                        </div>
+                    @endif
+               </div>
+           </form>
+       </div>
+   </div>
+
+   <div class = "table-responsive">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th  style="display: none;" scope="col">#</th>
+                <!--  <th scope="col">ตัวอย่างเอกสาร</th> -->
+                <th scope="col">ชื่อ</th>
+                <th scope="col">ขนาดไฟล์</th>
+                <th scope="col">วันที่สร้าง</th>
+                <th  scope="col"></th>
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($files as $file)
+            <tr>
                 <!-- 
                     <?php $src = "public/upload".substr($file->dir, 13); ?>
                     <td><a class="example-image-link" href="{{asset($src)}}" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image"  width="100" height="100" src="{{asset($src)}}" alt=""/></a></td> -->
-                 
+
                     <td>{{$file->name}}</td>
                     <td>{{ceil($file->size/1000000)}} MB</td>
                     <td>{{$file->created_at}}</td>
                     <td>
-                       
-                        
-                        
-                        
+
+
+
+
                         <form action="{{ route('delete')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field()}}
 
-                             <a href="/download{{substr($file->dir, 13)}}"><button   type="button" class="btn btn-success" "><i class="fa fa-download" aria-hidden="true"></i></button></a>
-                              <input type="hidden" name="_method" value="DELETE"/>
-                              <input type="hidden" name="name" value="{{$file->id}}"/>
-                              <button type="submit" class="btn btn-danger" onclick="Delete(event)" name="delete"/ ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <a href="/download{{substr($file->dir, 13)}}"><button   type="button" class="btn btn-success" "><i class="fa fa-download" aria-hidden="true"></i></button></a>
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <input type="hidden" name="name" value="{{$file->id}}"/>
+                            <button type="submit" class="btn btn-danger" onclick="Delete(event)" name="delete"/ ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                         </form>
 
@@ -120,26 +127,27 @@
                 @endforeach
             </table>
 
-                <div id="page" style="display: none;">
             
-            <center><ul class="pagination pagination">
-                <li><a id="toFirstPage" href="{{1}}">&laquo;</a></li>
-                <li><a id="pagePrev" href="">&lsaquo;</a></li>
-                <li class="p1"><a id="p1" href=""></a></li>
-                <li class="p2"><a id="p2" href=""></a></li>
-                <li class="p3"><a id="p3" href=""></a></li>
-                <li class="p4"><a id="p4" href=""></a></li>
-                <li class="p5"><a id="p5">...</a></li>
-                <li><a id="pageNext" href="">&rsaquo;</a></li>
-                <li><a id="toLastPage" href="">&raquo;</a></li>
-            </ul>
-        </center>
-    </div>
 
-        </div>
     </div>
+    <div id="page" style="display: none;">
+                <center>
+                    <ul class="pagination pagination">
+                        <li><a id="toFirstPage" href="{{1}}">&laquo;</a></li>
+                        <li><a id="pagePrev" href="">&lsaquo;</a></li>
+                        <li class="p1"><a id="p1" href=""></a></li>
+                        <li class="p2"><a id="p2" href=""></a></li>
+                        <li class="p3"><a id="p3" href=""></a></li>
+                        <li class="p4"><a id="p4" href=""></a></li>
+                        <li class="p5"><a id="p5">...</a></li>
+                        <li><a id="pageNext" href="">&rsaquo;</a></li>
+                        <li><a id="toLastPage" href="">&raquo;</a></li>
+                    </ul>
+                </center>
+            </div>
+</div>
 
-   </div>
+</div>
 
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -153,7 +161,7 @@
         var filename = $('#chooseFile').val();
         $('#nameFile').val(filename);
         $('#nameFile').val(filename.split(/(\\|\/)/g).pop());
-        $('#nameFile').focus();
+        //$('#nameFile').focus();
         //alert(filename);
     });
 
@@ -298,8 +306,8 @@
             $("#p4").attr('href','{{4}}');
             $("#p5").removeAttr('href');
             if({{$page}} == 1){
-            $(".p1").addClass('active');
-            $("#p1").removeAttr('href');
+                $(".p1").addClass('active');
+                $("#p1").removeAttr('href');
             }
             else if({{$page}} == 2){
                 $(".p2").addClass('active');

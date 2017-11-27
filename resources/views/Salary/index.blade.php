@@ -43,22 +43,9 @@
                 <div class = "col-xs-8 col-sm-9">
                     <select class="form-control" Id="Year" >
                         <!-- <option>โปรดเลือก</option> -->
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
+                        @for($i=$firstYear;$i<$lastYear;$i++)
+                            <option value="{{$i}}">{{$i}}</option>
+                        @endfor
                     </select>
                 </div>
             </div>
@@ -117,11 +104,11 @@
             <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
                 <center>{{$Employee->IDEmployee}}</center>
             </td>
-            <td id="FirstName1" data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
-                <center>{{$Employee->FirstName}}</center>
+            <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center id="FirstName1">{{$Employee->FirstName}}</center>
             </td>
-            <td id="LastName1"  data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
-                <center>{{$Employee->LastName}}</center>
+            <td data-toggle="modal" data-target="#show" Onclick="Show_Value({{$Employee}})">
+                <center id="LastName1">{{$Employee->LastName}}</center>
             </td>
 
             @if($Employee->Position == 'BranchManager')
@@ -259,7 +246,7 @@
                                 <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0"> 
+                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0"> 
                                 <span style="color: red;" id="fo2"></span>
                             </div>
                         </div>
@@ -271,7 +258,7 @@
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
 
-                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)' value="0">
+                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo3"></span>
                             </div>
                         </div>
@@ -285,7 +272,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">  
+                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">  
                                 <span style="color: red;" id="fo4"></span> 
                             </div>
                         </div>
@@ -296,7 +283,7 @@
                                 <p class = "center" style = "margin : 0;">OT</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">
+                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo5"></span> 
                             </div>
 
@@ -310,7 +297,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">   
+                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
                                 <span style="color: red;" id="fo6"></span> 
                             </div>
                         </div>
@@ -321,7 +308,7 @@
                                 <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">
+                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo7"></span> 
                             </div>
                         </div>
@@ -334,7 +321,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0">   
+                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
                                 <span style="color: red;" id="fo8"></span> 
                             </div>
                         </div>
@@ -474,7 +461,7 @@
                                     <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="number" id="Salary1" name="Salary1"  style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                    <input class="form-control "  type="number" id="Salary1" name="Salary1"  style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">   
                                     <span style="color: red;" id="fo_2"></span>
                                 </div>
                             </div>
@@ -486,7 +473,7 @@
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
 
-                                    <input class="form-control " type="number" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1()"onkeypress='validate(event)'>
+                                    <input class="form-control " type="number" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1()"onkeypress='validate(event)' min="0">
                                     <span style="color: red;" id="fo_3"></span>    
                                 </div>
                             </div>
@@ -500,7 +487,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="number" id="Late1" name="Late1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                    <input class="form-control "  type="number" id="Late1" name="Late1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">   
                                     <span style="color: red;" id="fo_4"></span>
                                 </div>
                             </div>
@@ -511,7 +498,7 @@
                                     <p class = "center" style = "margin : 0;">OT</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control " type="number" id = "OT1" name="OT1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>
+                                    <input class="form-control " type="number" id = "OT1" name="OT1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">
                                     <span style="color: red;" id="fo_5"></span>
                                 </div>
                             </div>
@@ -524,7 +511,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="number" id="SocialSecurity1" name="SocialSecurity1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                    <input class="form-control "  type="number" id="SocialSecurity1" name="SocialSecurity1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">   
                                     <span style="color: red;" id="fo_6"></span>
                                 </div>
                             </div>
@@ -535,7 +522,7 @@
                                     <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control " type="number"  id = "Bonus1" name = "Bonus1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' >
+                                    <input class="form-control " type="number"  id = "Bonus1" name = "Bonus1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">
                                     <span style="color: red;" id="fo_7"></span>
                                 </div>
                             </div>
@@ -548,7 +535,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="number" id="CutWages1" name="CutWages1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)'>   
+                                    <input class="form-control "  type="number" id="CutWages1" name="CutWages1" style = "text-align : center;" Onchange="On_Sum1()" onkeypress='validate(event)' min="0">   
                                     <span style="color: red;" id="fo_8"></span>
                                 </div>
                             </div>

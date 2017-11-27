@@ -17,7 +17,7 @@ class FileController extends Controller
         }
     
         $limit = 5;
-        $files = new File;
+        $files = File::orderBy('created_at','DESC');
         $lastPage = $files->count()/$limit;
 
     
@@ -42,8 +42,6 @@ class FileController extends Controller
         if(!Auth::check()){
             return redirect('/home');
         }
-        // dd($request->file);
-        // dd($request);
 
         if ($request->hasFile('file') && $request->has('filename')) {
             $filename = $request->file->getClientOriginalName();
@@ -52,12 +50,16 @@ class FileController extends Controller
             $filedir  = $request->file->store('public/upload');
             $file = new File;
             $file->name = $request->filename;
-            $file->size = $filesize; 
+            $file->size = $filesize;
+
+            if($filesize >= 8388608){
+                return back()->with('upload3','ขนาดไฟล์ใหญ่เกินไป');
+            }
           
             if(strchr($file->name,".")==".png" || strchr($file->name,".")==".doc" || strchr($file->name,".")==".docx" || strchr($file->name,".")==".pdf" || strchr($file->name,".")==".xls") {
                 $file->dir = $filedir;
                 $file->save();
-                return back();
+                return back()->with('upload0','อัพโหลดไฟล์สำเร็จ');
             }
             else {
                 return back()->with('upload1','กรุณาเลือกไฟล์ที่ต้องการ');
