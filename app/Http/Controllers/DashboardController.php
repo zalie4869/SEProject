@@ -39,7 +39,7 @@ class DashboardController extends Controller
 
         $eachMonth = [$M1,$M2,$M3,$M4,$M5,$M6,$M7,$M8,$M9,$M10,$M11,$M12];
 
-        $Y1 = Salary::whereYear('Montyear','=','2007')->sum('Salary.Sum');
+        /*$Y1 = Salary::whereYear('Montyear','=','2007')->sum('Salary.Sum');
         $Y2 = Salary::whereYear('Montyear','=','2008')->sum('Salary.Sum');
         $Y3 = Salary::whereYear('Montyear','=','2009')->sum('Salary.Sum');
         $Y4 = Salary::whereYear('Montyear','=','2010')->sum('Salary.Sum');
@@ -56,9 +56,9 @@ class DashboardController extends Controller
         $Y15 = Salary::whereYear('Montyear','=','2021')->sum('Salary.Sum');
         $Y16 = Salary::whereYear('Montyear','=','2022')->sum('Salary.Sum');
 
-        $eachYear = [$Y1,$Y2,$Y3,$Y4,$Y5,$Y6,$Y7,$Y8,$Y9,$Y10,$Y11,$Y12,$Y13,$Y14,$Y15,$Y16];
+        $eachYear = [$Y1,$Y2,$Y3,$Y4,$Y5,$Y6,$Y7,$Y8,$Y9,$Y10,$Y11,$Y12,$Y13,$Y14,$Y15,$Y16];*/
 
-        //dd($Y1);
+        
 
         return view('Dashboard.index')->with('Schedule',$linktable)
                                     ->with('Employees',$Employees)

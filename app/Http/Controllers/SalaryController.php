@@ -34,7 +34,7 @@ class SalaryController extends Controller
     }
 
     public function Insert(Request $request){
-
+        //dd($request->all());
         if(!Auth::check()){
             return redirect('/home');
         }
@@ -68,7 +68,6 @@ class SalaryController extends Controller
     }
     public function Edit(Request $request)
     {   
-
         if(!Auth::check()){
             return redirect('/home');
         }
@@ -82,10 +81,12 @@ class SalaryController extends Controller
         $Salary->Bonus = $request->Bonus1;
         $Salary->CutWages = $request->CutWages1;
         $Salary->Sum = $request->Sum1;
+        //dd($Salary->Sum);
         $Salary->save();
 
-        // return redirect('/salary/'.$Salary->Montyear[0].$Salary->Montyear[1].$Salary->Montyear[2].$Salary->Montyear[3].'?month='.$Salary->Montyear[5].$Salary->Montyear[6]);
-        return back()->with('EditSuccess','Edit success');
+        //dd($Salary);
+         return redirect('/salary/'.$Salary->Montyear[0].$Salary->Montyear[1].$Salary->Montyear[2].$Salary->Montyear[3].'?month='.$Salary->Montyear[5].$Salary->Montyear[6]);
+        //return back()->with('EditSuccess','Edit success');
     }
 
 }

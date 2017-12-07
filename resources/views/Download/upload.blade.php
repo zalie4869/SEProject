@@ -1,24 +1,15 @@
 @extends('layouts.index')
 @section('content')
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
+<link href="{{asset('css/timeline.css')}}" rel="stylesheet">
+<link href="{{asset('css/startmin.css')}}" rel="stylesheet">
+<link href="{{asset('css/morris.css')}}" rel="stylesheet">
+<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/upload.css')}}" rel="stylesheet">
+<!-- <link href="{{asset('jquery-ui-1.9.0.custom.css')}}" rel="stylesheet"> -->
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/timeline.css')}}" rel="stylesheet">
-    <link href="{{asset('css/startmin.css')}}" rel="stylesheet">
-    <link href="{{asset('css/morris.css')}}" rel="stylesheet">
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/upload.css')}}" rel="stylesheet">
-    <!-- <link href="{{asset('jquery-ui-1.9.0.custom.css')}}" rel="stylesheet"> -->
-
-</head>
 <!-- Page Content -->
 <div id="page-wrapper" style="border-color: #222;">
     <div class="container-fluid">
@@ -53,7 +44,7 @@
 
    <div class = "table-responsive">
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th  style="display: none;" scope="col">#</th>
@@ -146,6 +137,8 @@
 <script src="{{asset('js/metisMenu.min.js')}}"></script>
 <script src="{{asset('js/startmin.js')}}"></script>
 <script src="{{asset('js/index.js')}}"></script>
+
+
 <!-- <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script> -->
 <script type="text/javascript">
 

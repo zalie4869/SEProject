@@ -68,11 +68,11 @@
                     
                     <div class="form-group">
                         <label >ความสูง</label>
-                        <input type="number" placeholder="กรุณากรอกความสูง" class="form-control" id="Height2" name="Height" min="0" onkeypress='validate(event)' type="text"  >
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text"  placeholder="กรุณากรอกความสูง" class="form-control" id="Height2" name="Height" min="0" onkeypress='validate(event)' type="text"  >
                     </div>
                     <div class="form-group">
                         <label >น้ำหนัก</label>
-                        <input type="number" placeholder="กรุณากรอกน้ำหนัก" class="form-control" id="Weight2" name="Weight" min="0" onkeypress='validate(event)' type="text"  >
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" placeholder="กรุณากรอกน้ำหนัก" class="form-control" id="Weight2" name="Weight" min="0" onkeypress='validate(event)' type="text"  >
                     </div>
                     <div class="form-group">
                         <label >โรคประจำตัว</label>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Primary2" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_Primary2" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามัธยมต้น</label>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Secondary2" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_Secondary2" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label>การศึกษามัธยมปลาย</label>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_High2" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_High2" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอาชีวศึกษา</label>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Vocational2" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_Vocational2" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามหาวิทยาลัย</label>
@@ -235,7 +235,7 @@
                     
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_University2" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_University2" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอื่นๆ</label>
@@ -254,7 +254,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Other2" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" min="0" max="4" step="0.01" id="GPA_Other2" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >ประวัติครอบครัว</label>
