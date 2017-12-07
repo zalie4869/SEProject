@@ -35,9 +35,9 @@
                     <div class="form-group">
                         <div class="file-upload col-xs-9 col-lg-5">
                           <div class="file-select col-xs-12 col-lg-12" >
-                            <div class="file-select-button" id="fileName">Choose File</div>
+                            <div class="file-select-button " id="fileName" style="right: unset; "">Choose File</div>
                             <input class="file-select-name" name="filename" id="nameFile" placeholder="No file chosen..." 
-                            style="border: unset; cursor: pointer;" readonly>
+                            style="border: unset; cursor: pointer;  " >
 
                             <input type="file" name="file" id="chooseFile" style="width: 84px;">
                         </div>
@@ -45,25 +45,7 @@
 
                     <input type="submit"  value="Upload" class="btn btn-primary" style="vertical-align: top;line-height: 25px;">
 
-                    <!-- @if(session('upload0')) 
-                        <div class="alert alert-success" style="margin-top: 10px;">
-                           <center>อัพโหลดไฟล์สำเร็จ<strong>!!</strong></center>
-                        </div>
 
-                    @elseif(session('upload1')) 
-                        <div class="alert alert-danger" style="margin-top: 10px;">
-                           <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง (*.JPG .JPEG .PDF .DOC .XLS .PPW*)<strong>!!</strong></center>
-                        </div>
-
-                    @elseif(session('upload2')) 
-                        <div class="alert alert-danger" style="margin-top: 10px;">
-                            <center>กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน<strong>!!</strong></center>
-                        </div>
-                    @elseif(session('upload3')) 
-                        <div class="alert alert-danger" style="margin-top: 10px;">
-                            <center>ขนาดไฟล์ใหญ่เกินไป (*ขนาดต้องไม่เกิน 8 MB*)<strong>!!</strong></center>
-                        </div>
-                    @endif -->
                </div>
            </form>
        </div>
@@ -167,26 +149,6 @@
 <!-- <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script> -->
 <script type="text/javascript">
 
-    // @if(session('upload0')) 
-    //                     <div class="alert alert-success" style="margin-top: 10px;">
-    //                        <center>อัพโหลดไฟล์สำเร็จ<strong>!!</strong></center>
-    //                     </div>
-
-    //                 @elseif(session('upload1')) 
-    //                     <div class="alert alert-danger" style="margin-top: 10px;">
-    //                        <center>กรุณาเลือกชนิดไฟล์ให้ถูกต้อง (*.JPG .JPEG .PDF .DOC .XLS .PPW*)<strong>!!</strong></center>
-    //                     </div>
-
-    //                 @elseif(session('upload2')) 
-    //                     <div class="alert alert-danger" style="margin-top: 10px;">
-    //                         <center>กรุณาเลือกไฟล์ที่ต้องการและกรอกข้อมูลให้ครบถ้วน<strong>!!</strong></center>
-    //                     </div>
-    //                 @elseif(session('upload3')) 
-    //                     <div class="alert alert-danger" style="margin-top: 10px;">
-    //                         <center>ขนาดไฟล์ใหญ่เกินไป (*ขนาดต้องไม่เกิน 8 MB*)<strong>!!</strong></center>
-    //                     </div>
-    //                 @endif
-
     $( document ).ready(function() {
         @if(session('upload0'))
             $('#fileSuccessText').html('อัพโหลดไฟล์สำเร็จ');
@@ -224,6 +186,7 @@
     var typeOfFile = [
             'image/jpeg',
             'image/jpg',
+            'image/png',
             'application/pdf',
             'application/vnd.ms-excel',
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -266,7 +229,7 @@
         var filename = $('#chooseFile').val();
         $('#nameFile').val(filename);
         $('#nameFile').val(filename.split(/(\\|\/)/g).pop());
-        //$('#nameFile').focus();
+        $('#nameFile').focus();
         //alert(filename);
     });
 

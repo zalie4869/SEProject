@@ -68,11 +68,11 @@
                     
                     <div class="form-group">
                         <label >ความสูง</label>
-                        <input type="number" placeholder="กรุณากรอกความสูง" class="form-control" id="Height2" name="Height">
+                        <input type="number" placeholder="กรุณากรอกความสูง" class="form-control" id="Height2" name="Height" min="0" onkeypress='validate(event)' type="text"  >
                     </div>
                     <div class="form-group">
                         <label >น้ำหนัก</label>
-                        <input type="number" placeholder="กรุณากรอกน้ำหนัก" class="form-control" id="Weight2" name="Weight">
+                        <input type="number" placeholder="กรุณากรอกน้ำหนัก" class="form-control" id="Weight2" name="Weight" min="0" onkeypress='validate(event)' type="text"  >
                     </div>
                     <div class="form-group">
                         <label >โรคประจำตัว</label>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group">
                         <label >หมายเลขโทรศัพท์ที่สามารถติดต่อได้</label>
-                        <input type="tel" class="form-control" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้" id="Phone2" name="Phone" maxlength="10" required>
+                        <input onkeypress='validate1(event)' type="tel" class="form-control" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้" id="Phone2" name="Phone" maxlength="10" required>
                     </div>
                     <div class="form-group">
                         <label >E-mail</label>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="form-group">
                         <label >หมายเลขบัตรบัตรประชาชน</label>
-                        <input type="text" class="form-control" id="IDCardNo2" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required>
+                        <input onkeypress='validate1(event)' type="text" class="form-control" id="IDCardNo2" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required>
                     </div>
                     <div class="form-group">
                         <label >วันที่ออกบัตร</label>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_Primary2" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Primary2" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามัธยมต้น</label>
@@ -176,7 +176,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_Secondary2" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Secondary2" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label>การศึกษามัธยมปลาย</label>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_High2" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_High2" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอาชีวศึกษา</label>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_Vocational2" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Vocational2" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามหาวิทยาลัย</label>
@@ -235,7 +235,7 @@
                     
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_University2" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_University2" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอื่นๆ</label>
@@ -254,7 +254,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" id="GPA_Other2" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" id="GPA_Other2" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >ประวัติครอบครัว</label>
@@ -274,7 +274,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" id="FatherPhone2" name="FatherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบิดา">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="FatherPhone2" name="FatherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบิดา">
                     </div>
                     <label >มารดา</label>
                     <div class="form-group">
@@ -291,7 +291,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" id="MotherPhone2" name="MotherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของมารดา">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="MotherPhone2" name="MotherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของมารดา">
                     </div>
                     <div class="form-group">
                         <label>สถานภาพสมรส</label><br>
@@ -320,7 +320,7 @@
                         </div>
                         <div class="form-group">
                             <label >เบอร์ที่สามารถติดต่อได้</label>
-                            <input type="tel" maxlength="10" class="form-control" id="SpousePhone2" name="SpousePhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของคู่สมรส">
+                            <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="SpousePhone2" name="SpousePhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของคู่สมรส">
                         </div>
                     </div>
                     <center><label >ประวัติบุคคลติดต่อกรณีฉุกเฉิน</label></center>
@@ -338,7 +338,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" id="PersonPhone2" name="PersonNotifyPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลติดต่อกรณีฉุกเฉิน">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="PersonPhone2" name="PersonNotifyPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลติดต่อกรณีฉุกเฉิน">
                     </div>
                     <center><label >ประวัติบุคคลอ้างอิงการทำงาน</label></center>
                     <div class="form-group">
@@ -355,7 +355,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" id="GuarantorPhone2" name="GuarantorPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลอ้างอิงการทำงาน">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="GuarantorPhone2" name="GuarantorPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลอ้างอิงการทำงาน">
                     </div>
                     <center><label >ประวัติการทำงาน</label></center>
                     <div class="form-group">
@@ -372,7 +372,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" id="WorkingExPhone2" name="WorkExPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของสถานที่ทำงานเก่า">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="WorkingExPhone2" name="WorkExPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของสถานที่ทำงานเก่า">
                     </div>
                     <div class="form-group">
                         <label >เหตุผลที่ออกจากงาน</label>

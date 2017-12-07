@@ -62,11 +62,11 @@
                     
                     <div class="form-group">
                         <label >ความสูง</label>
-                        <input type="number" placeholder="กรุณากรอกความสูง" class="form-control" name="Height">
+                        <input onkeypress='validate(event)' type="text" placeholder="กรุณากรอกความสูง" class="form-control" name="Height" min="0">
                     </div>
                     <div class="form-group">
                         <label >น้ำหนัก</label>
-                        <input type="number" placeholder="กรุณากรอกน้ำหนัก" class="form-control" name="Weight">
+                        <input onkeypress='validate(event)' type="text" placeholder="กรุณากรอกน้ำหนัก" class="form-control" name="Weight" min="0">
                     </div>
                     <div class="form-group">
                         <label >โรคประจำตัว</label>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label >หมายเลขโทรศัพท์ที่สามารถติดต่อได้</label>
-                        <input type="tel" class="form-control" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้" name="Phone" maxlength="10" required>
+                        <input onkeypress='validate1(event)' type="tel" class="form-control" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้" name="Phone" maxlength="10" required>
                     </div>
                     <div class="form-group">
                         <label >E-mail</label>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="form-group">
                         <label >หมายเลขบัตรบัตรประชาชน</label>
-                        <input type="text" class="form-control" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required>
+                        <input onkeypress='validate1(event)' type="text" class="form-control" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required>
                     </div>
                     <div class="form-group">
                         <label >วันที่ออกบัตร</label>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" class="form-control" name="GPA_Primary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามัธยมต้น</label>
@@ -170,7 +170,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text"  min="0" max="4" step="0.01" class="form-control" name="GPA_Secondary" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label>การศึกษามัธยมปลาย</label>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text"  min="0" max="4" step="0.01" class="form-control" name="GPA_High" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอาชีวศึกษา</label>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text" min="0" max="4" step="0.01" class="form-control" name="GPA_Vocational" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษามหาวิทยาลัย</label>
@@ -229,7 +229,7 @@
                     
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text"  min="0" max="4" step="0.01" class="form-control" name="GPA_University" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >การศึกษาอื่นๆ</label>
@@ -248,7 +248,7 @@
                     </div>
                     <div class="form-group">
                         <label >เกรดเฉลี่ย</label>
-                        <input type="number" min="0" max="4" step="0.01" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
+                        <input onkeypress='validate(event)' type="text"  min="0" max="4" step="0.01" class="form-control" name="GPA_Other" placeholder="กรุณากรอกเกรดเฉลี่ย">
                     </div>
                     <center>
                         <label >ประวัติครอบครัว</label>
@@ -268,7 +268,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" name="FatherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบิดา">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" name="FatherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบิดา">
                     </div>
                     <label >มารดา</label>
                     <div class="form-group">
@@ -285,7 +285,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" name="MotherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของมารดา">
+                        <input  onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" name="MotherPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของมารดา">
                     </div>
                     <div class="form-group">
                         <label>สถานภาพสมรส</label><br>
@@ -314,7 +314,7 @@
                         </div>
                         <div class="form-group">
                             <label >เบอร์ที่สามารถติดต่อได้</label>
-                            <input type="tel" maxlength="10" class="form-control" id="SpousePhone" name="SpousePhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของคู่สมรส">
+                            <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" id="SpousePhone" name="SpousePhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของคู่สมรส">
                         </div>
                     </div>
                     <center><label >ประวัติบุคคลติดต่อกรณีฉุกเฉิน</label></center>
@@ -332,7 +332,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" name="PersonNotifyPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลติดต่อกรณีฉุกเฉิน">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" name="PersonNotifyPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลติดต่อกรณีฉุกเฉิน">
                     </div>
                     <center><label >ประวัติบุคคลอ้างอิงการทำงาน</label></center>
                     <div class="form-group">
@@ -349,7 +349,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" name="GuarantorPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลอ้างอิงการทำงาน">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" name="GuarantorPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของบุคคลอ้างอิงการทำงาน">
                     </div>
                     <center><label >ประวัติการทำงาน</label></center>
                     <div class="form-group">
@@ -366,7 +366,7 @@
                     </div>
                     <div class="form-group">
                         <label >เบอร์ที่สามารถติดต่อได้</label>
-                        <input type="tel" maxlength="10" class="form-control" name="WorkExPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของสถานที่ทำงานเก่า">
+                        <input onkeypress='validate1(event)' type="tel" maxlength="10" class="form-control" name="WorkExPhone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ที่สามารถติดต่อได้ของสถานที่ทำงานเก่า">
                     </div>
                     <div class="form-group">
                         <label >เหตุผลที่ออกจากงาน</label>
@@ -452,5 +452,28 @@
             box.style.display = 'none';
         }
     }
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode( key );
+        var regex = /[0-9]|\./;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    function validate1(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode( key );
+        var regex = /[0-9]/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
 
 </script>

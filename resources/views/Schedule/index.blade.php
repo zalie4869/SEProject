@@ -52,7 +52,19 @@
                 <tr onclick = "editfunction(this)">
                     <td style="display: none;">{{$Employee->EmpID}}</td>
                     <td>{{$Employee->FirstName}} {{$Employee->LastName}}</td>
-                    <td>{{$Employee->Position}}</td>
+
+                    @if($Employee->Position === 'BranchManager')
+                        <td>ผู้จัดการร้าน</td>
+                    @elseif($Employee->Position === 'AssistantManager')
+                        <td>ผู้ช่วยผู้จัดการ</td>
+                    @elseif($Employee->Position === 'StaffFull-Time')
+                        <td>พนักงานประจำ</td>     
+                    @elseif($Employee->Position === 'StaffPart-time')
+                        <td>พนักงานชั่วคราว</td>
+                    @else
+                        <td>{{$Employee->Position}}</td>
+                    @endif
+
                     <td>{{$Employee->Phone}}</td>
                     @if(count($Schedule)!=0)
                     <?php $check = true; ?>
@@ -76,8 +88,6 @@
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td ></td>
-
                     @endif
                     @else
                     <td ></td>
@@ -87,8 +97,6 @@
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td ></td>
-
                     @endif
                     <td>
                         <center>

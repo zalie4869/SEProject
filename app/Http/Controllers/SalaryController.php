@@ -84,7 +84,8 @@ class SalaryController extends Controller
         $Salary->Sum = $request->Sum1;
         $Salary->save();
 
-        return redirect('/salary/'.$Salary->Montyear[0].$Salary->Montyear[1].$Salary->Montyear[2].$Salary->Montyear[3].'?month='.$Salary->Montyear[5].$Salary->Montyear[6]);
+        // return redirect('/salary/'.$Salary->Montyear[0].$Salary->Montyear[1].$Salary->Montyear[2].$Salary->Montyear[3].'?month='.$Salary->Montyear[5].$Salary->Montyear[6]);
+        return back()->with('EditSuccess','Edit success');
     }
 
 }

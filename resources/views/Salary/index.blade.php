@@ -242,7 +242,7 @@
                                 <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class=" form-control  "  type="number" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0"> 
+                                <input class=" form-control  " type="text" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);""  onkeypress='validate(event)' value="0" min="0"> 
                                 <span style="color: red;" id="fo2"></span>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
 
-                                <input class="form-control " type="number" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)' value="0" min="0">
+                                <input class="form-control " type="text" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum()"onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo3"></span>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">  
+                                <input class="form-control "  type="text" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">  
                                 <span style="color: red;" id="fo4"></span> 
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                                 <p class = "center" style = "margin : 0;">OT</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
+                                <input class="form-control " type="text" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo5"></span> 
                             </div>
 
@@ -293,7 +293,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
+                                <input class="form-control "  type="text" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
                                 <span style="color: red;" id="fo6"></span> 
                             </div>
                         </div>
@@ -304,7 +304,7 @@
                                 <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
+                                <input class="form-control " type="text" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">
                                 <span style="color: red;" id="fo7"></span> 
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="number" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
+                                <input class="form-control "  type="text" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum()" onkeypress='validate(event)' value="0" min="0">   
                                 <span style="color: red;" id="fo8"></span> 
                             </div>
                         </div>
@@ -328,7 +328,7 @@
                                 <p class = "center" style = "margin : 0; border-bottom : 2px solid red;">รวมยอดเงินที่ได้</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="number" id = "Sum" name = "Sum" style = "text-align : center;" readonly value="0">
+                                <input class="form-control " type="text" id = "Sum" name = "Sum" style = "text-align : center;" readonly value="0">
                             </div>
                         </div>
                     </div>
@@ -725,7 +725,16 @@
     <div>
     </div>
 
-
+<!-- Success -->
+<div class="modal fade" id="EditSuccess" role="dialog">
+    <div class="modal-dialog modal-sm" style="top: 30%">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #ffdf80; border-radius: 4px; border-color: #e6ac00; color: #997300;">
+                <p><center>แก้ไขข้อมูลพนักงานเรียบร้อยแล้ว</center></p>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -737,6 +746,7 @@
     <script src="{{asset('js/dmy.js')}}"></script>
 
     <script type="text/javascript">
+
         $emp = '';
         document.getElementById('Year').value = {{$year}};
         document.getElementById('Month').value = {{$month_Num}};
@@ -800,7 +810,7 @@
     
     function Edit_Value(argument) {
 
-        document.getElementById('EmpID1').value = argument.IDEmployee;
+        document.getElementById('EmpID1').value = argument.EmpID;
 
         if(argument.NameTitle === 'Mr'){
             document.getElementById('NameTitle1').value = 'นาย';
@@ -905,11 +915,11 @@
         // } 
     }
     function On_Sum() {
-        var Sum = parseInt(document.getElementById('Salary').value)+parseInt(document.getElementById('OT').value)-parseInt(document.getElementById('SocialSecurity').value)-parseInt(document.getElementById('Late').value)-parseInt(document.getElementById('Absence').value)+parseInt(document.getElementById('Bonus').value)-parseInt(document.getElementById('CutWages').value);
+        var Sum = parseFloat(document.getElementById('Salary').value)+parseFloat(document.getElementById('OT').value)-parseFloat(document.getElementById('SocialSecurity').value)-parseFloat(document.getElementById('Late').value)-parseFloat(document.getElementById('Absence').value)+parseFloat(document.getElementById('Bonus').value)-parseFloat(document.getElementById('CutWages').value);
         document.getElementById('Sum').value = Sum;
     }
     function On_Sum1(argument) {
-        var Sum1 = parseInt(document.getElementById('Salary1').value)+parseInt(document.getElementById('OT1').value)+parseInt(document.getElementById('Bonus1').value)-parseInt(document.getElementById('SocialSecurity1').value)-parseInt(document.getElementById('Late1').value)-parseInt(document.getElementById('Absence1').value)-parseInt(document.getElementById('CutWages1').value);
+        var Sum1 = parseFloat(document.getElementById('Salary1').value)+parseFloat(document.getElementById('OT1').value)+parseFloat(document.getElementById('Bonus1').value)-parseFloat(document.getElementById('SocialSecurity1').value)-parseFloat(document.getElementById('Late1').value)-parseFloat(document.getElementById('Absence1').value)-parseFloat(document.getElementById('CutWages1').value);
         document.getElementById('Sum1').value = Sum1;
     }
     function Submit() {
@@ -1064,6 +1074,14 @@
 
 
     $(document).ready(function(){
+
+        @if(session('EditSuccess'))
+            $('#EditSuccess').modal('show');
+            setTimeout(function(){
+                $('#EditSuccess').modal('hide');
+            },1000);
+        @endif
+
         $('#clickYes').click(function(){
             $.ajax({
                 type: 'POST',
@@ -1099,8 +1117,12 @@
       if( !regex.test(key) ) {
         theEvent.returnValue = false;
         if(theEvent.preventDefault) theEvent.preventDefault();
+        }
     }
-}
+
+    function setTwoNumberDecimal(id) {
+        document.getElementById(id).value = parseFloat(document.getElementById(id).value).toFixed(2);
+    }
 
 </script>
 
