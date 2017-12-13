@@ -15,14 +15,6 @@ class DashboardController extends Controller
 {
     public function Index(){
 
-        $allYear = DB::select(DB::raw("SELECT EXTRACT(YEAR FROM Montyear) FROM Salary;"));
-        
-        //$ss = $allYear->distinct();
-        $time = "1900-01-01 00:00:00";
-        $ss = Salary::get(['Montyear']);
-        //$ss = date('Y', strtotime($sss));
-        dd($ss);
-
         if(!Auth::check()){
             return redirect('/home');
         }
@@ -84,26 +76,37 @@ class DashboardController extends Controller
 
         $eachMonth = [$M1,$M2,$M3,$M4,$M5,$M6,$M7,$M8,$M9,$M10,$M11,$M12];
 
-        $Y1 = Salary::whereYear('Montyear','=','2007')->sum('Salary.Sum');
-        $Y2 = Salary::whereYear('Montyear','=','2008')->sum('Salary.Sum');
-        $Y3 = Salary::whereYear('Montyear','=','2009')->sum('Salary.Sum');
-        $Y4 = Salary::whereYear('Montyear','=','2010')->sum('Salary.Sum');
-        $Y5 = Salary::whereYear('Montyear','=','2011')->sum('Salary.Sum');
-        $Y6 = Salary::whereYear('Montyear','=','2012')->sum('Salary.Sum');
-        $Y7 = Salary::whereYear('Montyear','=','2013')->sum('Salary.Sum');
-        $Y8 = Salary::whereYear('Montyear','=','2014')->sum('Salary.Sum');
-        $Y9 = Salary::whereYear('Montyear','=','2015')->sum('Salary.Sum');
-        $Y10 = Salary::whereYear('Montyear','=','2016')->sum('Salary.Sum');
-        $Y11 = Salary::whereYear('Montyear','=','2017')->sum('Salary.Sum');
-        $Y12 = Salary::whereYear('Montyear','=','2018')->sum('Salary.Sum');
-        $Y13 = Salary::whereYear('Montyear','=','2019')->sum('Salary.Sum');
-        $Y14 = Salary::whereYear('Montyear','=','2020')->sum('Salary.Sum');
-        $Y15 = Salary::whereYear('Montyear','=','2021')->sum('Salary.Sum');
-        $Y16 = Salary::whereYear('Montyear','=','2022')->sum('Salary.Sum');
+        $Y1 = Salary::whereYear('Montyear','=','2007')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y2 = Salary::whereYear('Montyear','=','2008')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y3 = Salary::whereYear('Montyear','=','2009')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y4 = Salary::whereYear('Montyear','=','2010')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y5 = Salary::whereYear('Montyear','=','2011')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y6 = Salary::whereYear('Montyear','=','2012')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y7 = Salary::whereYear('Montyear','=','2013')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y8 = Salary::whereYear('Montyear','=','2014')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y9 = Salary::whereYear('Montyear','=','2015')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y10 = Salary::whereYear('Montyear','=','2016')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y11 = Salary::whereYear('Montyear','=','2017')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y12 = Salary::whereYear('Montyear','=','2018')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y13 = Salary::whereYear('Montyear','=','2019')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y14 = Salary::whereYear('Montyear','=','2020')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y15 = Salary::whereYear('Montyear','=','2021')->where('Sum','>',0)->sum('Salary.Sum');
+        $Y16 = Salary::whereYear('Montyear','=','2022')->where('Sum','>',0)->sum('Salary.Sum');
 
         $eachYear = [$Y1,$Y2,$Y3,$Y4,$Y5,$Y6,$Y7,$Y8,$Y9,$Y10,$Y11,$Y12,$Y13,$Y14,$Y15,$Y16];
 
-        
+        /*$allYear = DB::select(DB::raw("SELECT DISTINCT YEAR(Montyear) FROM Salary"));
+        //dd($allYear);
+        $eachYear = $allYear;
+
+        $j = [];
+        for($i=0;$i<sizeof($allYear);$i++){
+            $Obj->elapsed = $allYear[$i];
+            //$Obj->value = 1234;
+            $j[$i] = json_encode($Obj);
+        }
+        dd($j);*/
+
 
         return view('Dashboard.index')->with('Schedule',$linktable)
                                     ->with('Employees',$Employees)
