@@ -9,10 +9,19 @@ use App\Salary;
 use App\connectSchedule;
 use DB;
 use Auth;
+use Carbon;
 
 class DashboardController extends Controller
 {
     public function Index(){
+
+        $allYear = DB::select(DB::raw("SELECT EXTRACT(YEAR FROM Montyear) FROM Salary;"));
+        
+        //$ss = $allYear->distinct();
+        $time = "1900-01-01 00:00:00";
+        $ss = Salary::get(['Montyear']);
+        //$ss = date('Y', strtotime($sss));
+        dd($ss);
 
         if(!Auth::check()){
             return redirect('/home');
@@ -24,18 +33,54 @@ class DashboardController extends Controller
         ->select("*")
         ->get();
 
-        $M1 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',1)->sum('Salary.Sum');
-        $M2 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',2)->sum('Salary.Sum');
-        $M3 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',3)->sum('Salary.Sum');
-        $M4 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',4)->sum('Salary.Sum');
-        $M5 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',5)->sum('Salary.Sum');
-        $M6 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',6)->sum('Salary.Sum');
-        $M7 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',7)->sum('Salary.Sum');
-        $M8 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',8)->sum('Salary.Sum');
-        $M9 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',9)->sum('Salary.Sum');
-        $M10 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',10)->sum('Salary.Sum');
-        $M11 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',11)->sum('Salary.Sum');
-        $M12 = Salary::whereYear('Montyear','=',date("Y"))->whereMonth('Montyear','=',12)->sum('Salary.Sum');
+        $M1 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',1)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M2 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',2)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M3 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',3)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M4 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',4)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M5 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',5)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M6 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',6)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M7 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',7)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M8 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',8)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M9 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',9)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M10 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',10)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M11 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',11)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
+        $M12 = Salary::whereYear('Montyear','=',date("Y"))
+            ->whereMonth('Montyear','=',12)
+            ->where("Sum",">",0)
+            ->sum('Salary.Sum');
 
         $eachMonth = [$M1,$M2,$M3,$M4,$M5,$M6,$M7,$M8,$M9,$M10,$M11,$M12];
 

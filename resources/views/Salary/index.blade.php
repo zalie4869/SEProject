@@ -242,7 +242,7 @@
                                 <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class=" form-control  " type="text" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" value="0" min="0"> 
+                                <input class=" form-control  " type="text" id="Salary" name="Salary"  style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" value="0" min="0" maxlength="8"> 
                                 <span style="color: red;" id="fo2"></span>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
 
-                                <input class="form-control " type="text" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" value="0" min="0">
+                                <input class="form-control " type="text" id = "Absence" name = "Absence" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" value="0" min="0" maxlength="8">
                                 <span style="color: red;" id="fo3"></span>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="text" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0">  
+                                <input class="form-control "  type="text" id="Late" name="Late" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0" maxlength="8">  
                                 <span style="color: red;" id="fo4"></span> 
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                                 <p class = "center" style = "margin : 0;">OT</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="text" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0">
+                                <input class="form-control " type="text" id = "OT" name="OT" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0" maxlength="8">
                                 <span style="color: red;" id="fo5"></span> 
                             </div>
 
@@ -293,7 +293,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="text" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);" oninput="v(this)" onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                <input class="form-control "  type="text" id="SocialSecurity" name="SocialSecurity" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);" oninput="v(this)" onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                 <span style="color: red;" id="fo6"></span> 
                             </div>
                         </div>
@@ -304,7 +304,7 @@
                                 <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control " type="text" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0">
+                                <input class="form-control " type="text" id = "Bonus" name = "Bonus" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);"  onkeypress='validate(event)' oninput="v(this)" onkeyup='v(this)' value="0" min="0" maxlength="8">
                                 <span style="color: red;" id="fo7"></span> 
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                                 <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                             </div>
                             <div class = "col-xs-6"  style = "padding-left : 0;">
-                                <input class="form-control "  type="text" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                <input class="form-control "  type="text" id="CutWages" name="CutWages" style = "text-align : center;" Onchange="On_Sum(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                 <span style="color: red;" id="fo8"></span> 
                             </div>
                         </div>
@@ -457,7 +457,7 @@
                                     <p class = "center" style = "margin : 0;">เงินเดือนประจำ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="text" id="Salary1" name="Salary1"  style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                    <input class="form-control "  type="text" id="Salary1" name="Salary1"  style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                     <span style="color: red;" id="fo_2"></span>
                                 </div>
                             </div>
@@ -469,7 +469,7 @@
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
 
-                                    <input class="form-control " type="text" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">
+                                    <input class="form-control " type="text" id = "Absence1" name = "Absence1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">
                                     <span style="color: red;" id="fo_3"></span>    
                                 </div>
                             </div>
@@ -483,7 +483,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">มาสาย</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="text" id="Late1" name="Late1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                    <input class="form-control "  type="text" id="Late1" name="Late1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                     <span style="color: red;" id="fo_4"></span>
                                 </div>
                             </div>
@@ -494,7 +494,7 @@
                                     <p class = "center" style = "margin : 0;">OT</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control " type="text" id = "OT1" name="OT1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">
+                                    <input class="form-control " type="text" id = "OT1" name="OT1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">
                                     <span style="color: red;" id="fo_5"></span>
                                 </div>
                             </div>
@@ -507,7 +507,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">ประกันสังคม</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="text" id="SocialSecurity1" name="SocialSecurity1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                    <input class="form-control "  type="text" id="SocialSecurity1" name="SocialSecurity1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                     <span style="color: red;" id="fo_6"></span>
                                 </div>
                             </div>
@@ -518,7 +518,7 @@
                                     <p class = "center" style = "margin : 0;">โบนัสพิเศษ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control " type="text"  id = "Bonus1" name = "Bonus1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">
+                                    <input class="form-control " type="text"  id = "Bonus1" name = "Bonus1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">
                                     <span style="color: red;" id="fo_7"></span>
                                 </div>
                             </div>
@@ -531,7 +531,7 @@
                                     <p class = "center" style = "margin : 0; color : red;">รายจ่ายอื่นๆ</p>
                                 </div>
                                 <div class = "col-xs-6"  style = "padding-left : 0;">
-                                    <input class="form-control "  type="text" id="CutWages1" name="CutWages1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0">   
+                                    <input class="form-control "  type="text" id="CutWages1" name="CutWages1" style = "text-align : center;" Onchange="On_Sum1(); setTwoNumberDecimal(id);" oninput="v(this)"  onkeypress='validate(event)' onkeyup='v(this)' value="0" min="0" maxlength="8">   
                                     <span style="color: red;" id="fo_8"></span>
                                 </div>
                             </div>

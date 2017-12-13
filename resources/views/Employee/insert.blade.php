@@ -61,11 +61,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <label >ความสูง</label>
+                        <label >ความสูง (เซนติเมตร)</label>
                         <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" placeholder="กรุณากรอกความสูง" class="form-control" name="Height" min="0">
                     </div>
                     <div class="form-group">
-                        <label >น้ำหนัก</label>
+                        <label >น้ำหนัก (กิโลกรัม)</label>
                         <input Onchange="setTwoNumberDecimal(this);" onkeypress='validate(event)' onkeyup='v(this)' oninput="v(this)" type="text" placeholder="กรุณากรอกน้ำหนัก" class="form-control" name="Weight" min="0">
                     </div>
                     <div class="form-group">
@@ -120,7 +120,7 @@
                     </div>
                     <div class="form-group">
                         <label >หมายเลขบัตรบัตรประชาชน</label>
-                        <input onkeypress='validate1(event)' type="text" class="form-control" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required>
+                        <input onkeypress='validate1(event)' type="text" class="form-control" placeholder="กรุณากรอกหมายเลขบัตรประชาชน" name="IDCardNo" maxlength="13" required pattern=".{13,}" required title="โปรดกรอกหมายเลขบัตรประชาชนให้ครบ 13 หลัก">
                     </div>
                     <div class="form-group">
                         <label >วันที่ออกบัตร</label>

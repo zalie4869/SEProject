@@ -67,11 +67,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <label >ความสูง</label>
+                        <label >ความสูง (เซนติเมตร)</label>
                         <input onkeypress='validate(event)' type="text" placeholder="กรุณากรอกความสูง" min="0" class="form-control" id="Height3" name="Height">
                     </div>
                     <div class="form-group">
-                        <label >น้ำหนัก</label>
+                        <label >น้ำหนัก (กิโลกรัม)</label>
                         <input onkeypress='validate(event)' type="text" placeholder="กรุณากรอกน้ำหนัก" min="0" class="form-control" id="Weight3" name="Weight">
                     </div>
                     <div class="form-group">
